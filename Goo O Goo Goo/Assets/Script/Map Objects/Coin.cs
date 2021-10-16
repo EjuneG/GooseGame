@@ -27,7 +27,20 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.name.Equals("Egg")) {
+            string touchedGoose = collision.GetComponent<EggControl>().lastTouchedBy;
             GameDisplay.Instance.points += 1;
+            switch (touchedGoose) {
+                case "MageGoose":
+                    //mage goose
+                    break;
+                case "BigGoose":
+                    break;
+                case "QuickGoose":
+                    break;
+                default:
+                    Debug.Log("Egg Hit Bonus But No Goose Found");
+                    break;
+            }
             AudioManager.Instance.Play("getWater");
             Destroy(this.gameObject);
         }
