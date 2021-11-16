@@ -7,9 +7,16 @@ public class Goose : MonoBehaviour
     protected Rigidbody2D gooseRB;
     [SerializeField] protected float speed;
     protected CommandKey keyUsing;
+    protected Animator gooseAnim;
+
+    //animator
+    bool walk;
+    bool head;
+
     void Awake()
     {
         gooseRB = gameObject.GetComponent<Rigidbody2D>();
+        gooseAnim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -20,22 +27,30 @@ public class Goose : MonoBehaviour
     protected void FixedUpdate() {
         GooseMovement();
         GooseAbility();
+        GooseAnimation();
     }
 
     void GooseMovement() {
         if (keyUsing == CommandKey.left && notOnLeftEdge(this.transform)) {
             this.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.Self);
+            walk = true;
             flipLeft(this.transform);
         } else if (keyUsing == CommandKey.right && notOnRightEdge(this.transform)) {
             //quickGooseRB.MovePosition(quickGooseRB.position + quickVelocity * Time.fixedDeltaTime);
             this.transform.Translate(Vector2.right * speed * Time.deltaTime, Space.Self);
+            walk = true;
             flipRight(this.transform);
+        } else {
+            walk = false;
         }
     }
 
     //assuming all might have an ability for future flexibility
     protected virtual void GooseAbility() { }
 
+    protected void GooseAnimation() {
+        gooseAnim.SetBool("walk", walk);
+    }
 
     //i put down constance to save time, better change them later
     protected bool notOnRightEdge(Transform transform) {

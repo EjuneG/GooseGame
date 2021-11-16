@@ -29,7 +29,6 @@ public class Progression : MonoBehaviour
     {
         timePassed += Time.fixedDeltaTime;
         updateDifficulty(timePassed);
-        Debug.Log(timePassed);
     }
 
     void SpawnCol() {

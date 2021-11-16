@@ -20,6 +20,7 @@ public class EggControl : MonoBehaviour
     bool touched = false;
     float lastTouchTime = 0f;
     public string lastTouchedBy; //shows which goose last touched it
+    private int pointMultiplier;
 
     public float edgeChange = 0.2f; 
     // Start is called before the first frame update
@@ -50,6 +51,9 @@ public class EggControl : MonoBehaviour
             rgb.velocity = rgb.velocity.normalized * currentSpeed;
         }
         updateBottomSpeed(Progression.Instance.difficultyLevel);
+        updatePointMultiplier();
+        Debug.Log("Point Multi: " + pointMultiplier);
+        updateSpeedVFX();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -155,25 +159,56 @@ public class EggControl : MonoBehaviour
         }
     }
 
-    public void updateBottomSpeed(int difficulty) {
+    private void updatePointMultiplier() {
+        double pointMultiple = currentSpeed / speedBottomThreshold;
+        if(pointMultiple < 1.4) {
+            pointMultiplier = 1;
+        }else if(pointMultiple < 1.7) {
+            pointMultiplier = 2;
+        }else if(pointMultiple < 2.0) {
+            pointMultiplier = 4;
+        } else {
+            pointMultiplier = 8;
+        }
+    }
+
+    private void updateSpeedVFX() {
+        GameObject speedVFX = transform.GetChild(0).gameObject;
+        if (pointMultiplier >= 2) {
+            if (!speedVFX.activeSelf) {
+                speedVFX.SetActive(true);
+            }
+        } else {
+            if (speedVFX.activeSelf) {
+                speedVFX.SetActive(false);
+            }
+        }
+    }
+
+    private void updateBottomSpeed(int difficulty) {
         switch (difficulty) {
             case 1:
                 Debug.Log("updated to new speed");
-                speedBottomThreshold = 3.5f * 1.25f;
+                speedBottomThreshold = 3.5f * 1.1f;
                 break;
             case 2:
-                speedBottomThreshold = 3.5f * 1.5f;
+                speedBottomThreshold = 3.5f * 1.25f;
                 break;
             case 3:
-                speedBottomThreshold = 3.5f * 2.0f;
+                speedBottomThreshold = 3.5f * 1.5f;
                 break;
             case 4:
-                speedBottomThreshold = 3.5f * 2.5f;
+                speedBottomThreshold = 3.5f * 2f;
                 break;
             default:
                 break;
         }
     }
+
+    public int getMultiplier() {
+        return pointMultiplier;
+    }
+
 
     IEnumerator stopShoot() {
         yield return new WaitForSeconds(1f);
@@ -194,4 +229,6 @@ public class EggControl : MonoBehaviour
             }
         }
     }
+
+    
 }

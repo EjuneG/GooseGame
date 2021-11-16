@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuickGoose : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {

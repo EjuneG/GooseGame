@@ -13,6 +13,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D eggCollider) {
         if (eggCollider.gameObject.name.Equals("Egg")) {
+            EggControl eggColliding = eggCollider.gameObject.GetComponent<EggControl>();
             string goose = eggCollider.gameObject.gameObject.GetComponent<EggControl>().lastTouchedBy;
             if(goose.Equals("BigGoose")) {
                 //send message to UI display
@@ -27,6 +28,7 @@ public class Obstacle : MonoBehaviour
             animator.SetFloat("HP", this.HP);
             AudioManager.Instance.Play("breakHouse");
             if (HP <= 0) {
+                int scoreToAdd = Score * eggColliding.getMultiplier();
                 GameDisplay.Instance.points += Score;
                 Destroy(this.gameObject);
             }

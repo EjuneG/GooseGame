@@ -28,7 +28,8 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.name.Equals("Egg")) {
             string touchedGoose = collision.GetComponent<EggControl>().lastTouchedBy;
-            GameDisplay.Instance.points += 1;
+            EggControl eggColliding = collision.gameObject.GetComponent<EggControl>();
+            GameDisplay.Instance.points += value * eggColliding.getMultiplier();
             switch (touchedGoose) {
                 case "MageGoose":
                     //mage goose
