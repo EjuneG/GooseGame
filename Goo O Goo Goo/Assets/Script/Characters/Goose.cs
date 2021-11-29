@@ -8,6 +8,8 @@ public class Goose : MonoBehaviour
     [SerializeField] protected float speed;
     protected CommandKey keyUsing;
     protected Animator gooseAnim;
+    public GameObject abc;
+    
 
     //animator
     bool walk;
