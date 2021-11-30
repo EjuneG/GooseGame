@@ -12,6 +12,7 @@ public class bottomLineTouched : MonoBehaviour
             AudioManager.Instance.StopPlay("bgm");
             AudioManager.Instance.Play("lossBGM");
             GameDisplay.Instance.gameOver = true;
+            Debug.Log("Game Over" + Time.time);
         }
     }
 }

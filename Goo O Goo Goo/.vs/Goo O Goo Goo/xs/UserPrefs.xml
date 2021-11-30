@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{55F7962B-0612-CB2E-8BDD-9866F2994740}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Map Objects/Progression.cs">
+    <Files>
+      <File FileName="Assets/Script/Map Objects/Obstacle.cs" Line="33" Column="25" />
+      <File FileName="Assets/Script/Map Objects/Coin.cs" />
+      <File FileName="Assets/Script/EggControl.cs" />
+      <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="9" Column="35" />
+      <File FileName="Assets/Script/Game Managers/bottomLineTouched.cs" />
+      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="129" Column="6" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Goo O Goo Goo" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Script" expanded="True">
+                <Node name="Game Managers" expanded="True" />
+                <Node name="Map Objects" expanded="True">
+                  <Node name="Progression.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="071038f6-5743-4f64-bdc5-26221d0d81d9" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

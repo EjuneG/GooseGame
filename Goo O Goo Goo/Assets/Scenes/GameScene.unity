@@ -351,6 +351,10 @@ MonoBehaviour:
   - {fileID: 5051520726033178385, guid: 79a6f9630019900428be4c0cfc78ffed, type: 3}
   - {fileID: 6907485945082773876, guid: 82d56855d3e1da44288d2272d13440d7, type: 3}
   - {fileID: 6386301123133699641, guid: ed2735946ea8f6f4f93459528cf17d3d, type: 3}
+  bonus:
+  - {fileID: 4232967464971073577, guid: 34fd358c0cae841868ad184eb2398d60, type: 3}
+  - {fileID: 5041440484131724811, guid: ef3e323d287f84770a55de6e89b88c92, type: 3}
+  - {fileID: 3797789490309218774, guid: e4d9b8e43d3544d678af32301a98d227, type: 3}
   difficultyLevel: 0
   gameboardX: 4
   gameboardY: 4.5

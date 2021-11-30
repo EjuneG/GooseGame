@@ -7,6 +7,7 @@ public class Obstacle : MonoBehaviour
     public int HP = 3;
     public int Score = 0;
     Animator animator;
+
     private void Awake() {
         animator = GetComponent<Animator>();
     }
@@ -30,6 +31,13 @@ public class Obstacle : MonoBehaviour
             if (HP <= 0) {
                 int scoreToAdd = Score * eggColliding.getMultiplier();
                 GameDisplay.Instance.points += Score;
+
+                // add bonus award object in obstacle coordinates
+                Vector2 position = this.gameObject.transform.position;
+                Debug.Log("Destroyed obstacle position: " + position);
+                Progression.Instance.SpawnBonusAward(position);
+
+
                 Destroy(this.gameObject);
             }
         }

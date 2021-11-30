@@ -52,7 +52,7 @@ public class EggControl : MonoBehaviour
         }
         updateBottomSpeed(Progression.Instance.difficultyLevel);
         updatePointMultiplier();
-        Debug.Log("Point Multi: " + pointMultiplier);
+        //Debug.Log("Point Multi: " + pointMultiplier);
         updateSpeedVFX();
     }
 
@@ -203,6 +203,11 @@ public class EggControl : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void setMultiplier(int inputPointMultiplier)
+    {
+        pointMultiplier = inputPointMultiplier;
     }
 
     public int getMultiplier() {

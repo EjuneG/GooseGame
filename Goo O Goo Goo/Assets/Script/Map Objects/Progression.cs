@@ -7,6 +7,7 @@ public class Progression : MonoBehaviour
     public static Progression Instance;
     public GameObject coin;
     public GameObject[] obstacles;
+    public GameObject[] bonus;
     public int difficultyLevel;
     private float timePassed = 0;
     [SerializeField]private float gameboardX;
@@ -121,6 +122,19 @@ public class Progression : MonoBehaviour
 
 
     }
+
+    // spawn random bonus award at the position where obstacle is destroyed
+    // called from Obstacle class
+    public void SpawnBonusAward(Vector2 position)
+    {
+        int bonusIndex = Random.Range(0, bonus.Length-1);
+        //int bonusIndex = 2;
+        Debug.Log("Spawn bonus award index: " + bonusIndex);
+        Instantiate(bonus[bonusIndex], position, Quaternion.identity);
+    }
+
+
+
 
     private bool CheckBounds2D(Vector2 position, Vector2 boundsSize) {
         Bounds boxBounds = new Bounds(position, boundsSize);
