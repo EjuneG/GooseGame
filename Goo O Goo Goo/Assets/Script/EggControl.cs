@@ -75,11 +75,10 @@ public class EggControl : MonoBehaviour
             AudioManager.Instance.Play("bigHead");
             AudioManager.Instance.Play("getWater2");
             StartCoroutine(increasePoint(20));
-            addAnimator.Play("appear");
+        //    addAnimator.Play("appear");
         //    PlayerControl.Instance.bigGooseAnimator.Play("head");
         } else {
             currentSpeed = rgb.velocity.magnitude; //updating currentSpeed
-            eggAnimator.Play("pong");
         }
     }
 
