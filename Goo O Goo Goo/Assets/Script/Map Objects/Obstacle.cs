@@ -42,4 +42,14 @@ public class Obstacle : MonoBehaviour
             }
         }
     }
+
+    public List<GameObject> GetChildren()
+    {
+        List<GameObject> children = new List<GameObject>();
+        foreach (Transform tran in this.gameObject.transform)
+        {
+            children.Add(tran.gameObject);
+        }
+        return children;
+    }
 }

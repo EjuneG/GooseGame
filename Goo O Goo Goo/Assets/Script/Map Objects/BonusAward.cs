@@ -6,6 +6,7 @@ public class BonusAward : MonoBehaviour
 {
     //Animator animator;
 
+    private float bonusGoldTime = 10;
     private float bonusX2Time = 10;
     [SerializeField] private float gameboardX;
     [SerializeField] private float gameboardY;
@@ -14,19 +15,6 @@ public class BonusAward : MonoBehaviour
     {
         //animator = GetComponent<Animator>();
     }
-
-    //private void Update()
-    //{
-    //    if (timeRemaining > 0)
-    //    {
-    //        timeRemaining -= Time.deltaTime;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Time has run out!");
-    //        timeRemaining = 0;
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D eggCollider)
     {
@@ -38,15 +26,15 @@ public class BonusAward : MonoBehaviour
             // name is "...Award(Clone)"
             if (bonusType.Contains("EggAward"))
             {
-                generateEggAward();
+                GenerateEggAward();
             }
             else if (bonusType.Contains("GoldAward"))
             {
-                generateGoldAward();
+                GenerateGoldAward();
             }
             else if (bonusType.Contains("X2Award"))
             {
-                generateX2Award(eggCollider);
+                GenerateX2Award(eggCollider);
             }
 
             Destroy(this.gameObject);
@@ -58,29 +46,31 @@ public class BonusAward : MonoBehaviour
     }
 
     // eggaward -> extra egg
-    private void generateEggAward()
+    private void GenerateEggAward()
     {
         Debug.Log("generating egg award");
     }
 
     // goldaward -> clear obstables, gold spread all over screen
-    private void generateGoldAward()
+    private void GenerateGoldAward()
     {
-        // clear all obstacles
+        // clear all obstables
+        Progression.Instance.ClearObstacles();
 
-        // loop over gameboard x,y, spawn gold over ... distance
-
-
-        Debug.Log("generating gold award");
+        // gold spread all over screen
+        Progression.Instance.SpawnGoldAward();
+        // gold will disappear after its life time in Coin.FixedUpdate()
     }
+
 
     // x2award -> multiplier x2 for 10 seconds
-    private void generateX2Award(Collider2D eggCollider)
+    private void GenerateX2Award(Collider2D eggCollider)
     {
-        StartCoroutine(generateX2AwardWaiter(eggCollider));
+        StartCoroutine(GenerateX2AwardWaiter(eggCollider));
     }
 
-    IEnumerator generateX2AwardWaiter(Collider2D eggCollider)
+    // TODO: waitforseconds not working, try add a class similar to coin to count down
+    private IEnumerator GenerateX2AwardWaiter(Collider2D eggCollider)
     {
         Debug.Log("generating x2 award");
         int originalMultiplier = eggCollider.gameObject.GetComponent<EggControl>().getMultiplier();
@@ -93,17 +83,9 @@ public class BonusAward : MonoBehaviour
         eggCollider.gameObject.GetComponent<EggControl>().setMultiplier(doubledMuliplier);
         Debug.Log("Doubled multiplier: " + eggCollider.gameObject.GetComponent<EggControl>().getMultiplier());
 
-        // wait on doubled point multiplier for 10 seconds, reset to original
-        //float counter = 0;
-        //float waitTime = 2;
-        //while (counter < waitTime)
-        //{
-        //    //Increment Timer until counter >= waitTime
-        //    counter += Time.deltaTime;
-        //    Debug.Log("We have waited for: " + counter + " seconds");
-        //    yield return null;
-        //}
-        yield return new WaitForSecondsRealtime(bonusX2Time);
+
+        //yield return new WaitForSeconds(bonusX2Time);
+        yield return new WaitForSeconds(1.0f);
         Debug.Log("Finished at timestamp : " + Time.time);
         eggCollider.gameObject.GetComponent<EggControl>().setMultiplier(originalMultiplier);
         Debug.Log("After multiplier: " + eggCollider.gameObject.GetComponent<EggControl>().getMultiplier());

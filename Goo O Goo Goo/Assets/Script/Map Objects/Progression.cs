@@ -127,14 +127,60 @@ public class Progression : MonoBehaviour
     // called from Obstacle class
     public void SpawnBonusAward(Vector2 position)
     {
-        int bonusIndex = Random.Range(0, bonus.Length-1);
-        //int bonusIndex = 2;
+        //int bonusIndex = Random.Range(0, bonus.Length-1);
+        int bonusIndex = 1;
         Debug.Log("Spawn bonus award index: " + bonusIndex);
         Instantiate(bonus[bonusIndex], position, Quaternion.identity);
     }
 
+    // spawn bonus award, gold spread all over screen
+    public void SpawnGoldAward()
+    {
+        Debug.Log("progression: spawning gold");
+        // loop over gameboard x,y, spawn gold over 0.5 distance
+        float x = -gameboardX;
+        float y = -gameboardY;
+        while (x <= gameboardX)
+        {
+            while (y <= gameboardY)
+            {
+                Instantiate(coin, new Vector2(x, y), Quaternion.identity);
+                y += 0.5f;
+            }
+            x += 0.5f;
+            y = -gameboardX;
+        }
+    }
+
+    // clear all obstacles
+    // TODO: need to work on finding obstacles
+    public void ClearObstacles()
+    {
+        Debug.Log("clearing obstacles");
+        Debug.Log(GameObject.Find("Rock"));
+        Debug.Log(GameObject.Find("Fox"));
+        Debug.Log(GameObject.Find("Truck"));
+        //Obstacle[] currObstacles = GetComponentsInChildren<Obstacle>();
+        //List<GameObject> currObstacles = Obstacle.Instance.GetChildren();
+        //foreach (GameObject cObstacle in currObstacles)
+        //{
+        //    Debug.Log(cObstacle.gameObject);
+        //    Debug.Log(cObstacle.gameObject.name);
+        //}
+        
 
 
+
+        //GameObject go = GameObject.Find(obstacles[2]);
+        //Debug.Log(go);
+        ////if the tree exist then destroy it
+        //while (go)
+        //{
+        //    Destroy(go.gameObject);
+        //    Debug.Log(name + "has been destroyed.");
+        //    go = GameObject.Find("Fox");
+        //}
+    }
 
     private bool CheckBounds2D(Vector2 position, Vector2 boundsSize) {
         Bounds boxBounds = new Bounds(position, boundsSize);
@@ -169,4 +215,11 @@ enum DestroyableObjects{
     rock = 0,
     car = 1,
     house = 2
+}
+
+enum BonusAwards
+{
+    EggAward = 0,
+    GoldAward = 1,
+    X2Award = 2
 }
