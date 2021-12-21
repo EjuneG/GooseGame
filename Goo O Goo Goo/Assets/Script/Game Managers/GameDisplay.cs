@@ -7,6 +7,7 @@ public class GameDisplay : MonoBehaviour
 {
     public static GameDisplay Instance;
     public int eggCount;
+    public int x2Multiplier;
     public List<GameObject> eggList = new List<GameObject>(); //a list to store eggs' gameObject for us to increase their speed
     public bool gameOver;
     [SerializeField] public int points = 0;
@@ -22,6 +23,7 @@ public class GameDisplay : MonoBehaviour
         Instance = this;
         gameOver = false;
         eggCount = 1;
+        x2Multiplier = 1;
         addScoreAnim = ScoreText.GetComponent<Animator>();
     }
 
@@ -31,6 +33,9 @@ public class GameDisplay : MonoBehaviour
 
     //add point asks who scored the point and the point amount, adds the point to total point and plays an animation
     public void addPoint(int point, string gooseName) {
+        // update point to reflect x2 award
+        point *= x2Multiplier;
+
         Color addScoreTextColor = Color.white;
         //text color: mage goose - blue, big goose - magenta, quick goose - white
         switch (gooseName) {
@@ -65,5 +70,10 @@ public class GameDisplay : MonoBehaviour
         addAnimator.Play("ScoreAdd");
         yield return new WaitForSeconds(0.5f);
         //Destroy(newAddScoreText.gameObject);
+    }
+
+    public void setX2Multiplier(int inputX2Multiplier)
+    {
+        x2Multiplier = inputX2Multiplier;
     }
 }
