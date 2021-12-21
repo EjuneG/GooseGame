@@ -72,12 +72,15 @@ public class BonusAward : MonoBehaviour
         StartCoroutine(GenerateX2AwardWaiter());
     }
 
-    // wait for bonus time
-    // 1. should not destroy bonus object, otherwise the script would not work
-    // 2. should not set back to original multiplier because x2 award may be called twice.
-    //    it should be reset to half of the multiplier instead of original
-    // 3. x2 multiplier is recorded separately in GameDisplay and has no effect on the individual egg's multiplier.
-    //    x2 applies for the entire game, not specific eggs.
+    /*wait for bonus time
+     1. should not destroy bonus object, otherwise the script would not work
+     2. multiplier is accumulative.
+        it should not be set back to original multiplier because x2 award may be called twice
+        (x1 at time 0, x2 at time 3, x4 at time 10, x2 at time 13, x1 at time 20)
+        it should be reset to half of the multiplier instead of original
+     3. x2 multiplier is recorded separately in GameDisplay and has no effect on the individual egg's multiplier.
+        x2 applies for the entire game, not specific eggs.
+    */
     IEnumerator GenerateX2AwardWaiter()
     {
         //Debug.Log("generating x2 award");
