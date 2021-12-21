@@ -30,7 +30,7 @@ public class Obstacle : MonoBehaviour
             AudioManager.Instance.Play("breakHouse");
             if (HP <= 0) {
                 int scoreToAdd = Score * eggColliding.getMultiplier();
-                GameDisplay.Instance.points += Score;
+                GameDisplay.Instance.addPoint(scoreToAdd, goose);
 
                 // add bonus award object in obstacle coordinates
                 Vector2 position = this.gameObject.transform.position;

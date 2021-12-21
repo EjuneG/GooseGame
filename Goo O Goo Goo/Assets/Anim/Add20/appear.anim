@@ -924,4 +924,11 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.5
+    functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 695311867970182721, guid: 3bf5167dcfb1ddc40b931bed2321815a, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//point update 
 public class pointUpdate : MonoBehaviour
 {
     Text point;

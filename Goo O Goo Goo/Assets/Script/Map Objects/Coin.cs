@@ -27,11 +27,14 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.name.Equals("Egg")) {
-            string touchedGoose = collision.GetComponent<EggControl>().lastTouchedBy;
+            string touchedGoose = collision.GetComponent<EggControl>().lastTouchedBy; //!!Mage Goose needs set up!!
             EggControl eggColliding = collision.gameObject.GetComponent<EggControl>();
             GameDisplay.Instance.points += value * eggColliding.getMultiplier();
+            int pointToAdd = value * eggColliding.getMultiplier();
+            GameDisplay.Instance.addPoint(pointToAdd, touchedGoose);
             switch (touchedGoose) {
                 case "MageGoose":
+                    Debug.Log("Mage Goose may not have been set up correctly");
                     //mage goose
                     break;
                 case "BigGoose":
