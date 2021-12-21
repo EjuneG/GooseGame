@@ -6,6 +6,7 @@ public class Progression : MonoBehaviour
 {
     public static Progression Instance;
     public GameObject coin;
+    public GameObject egg;
     public GameObject[] obstacles;
     public GameObject[] bonus;
     public int difficultyLevel;
@@ -127,8 +128,8 @@ public class Progression : MonoBehaviour
     // called from Obstacle class
     public void SpawnBonusAward(Vector2 position)
     {
-        //int bonusIndex = Random.Range(0, bonus.Length-1);
-        int bonusIndex = 1;
+        int bonusIndex = Random.Range(0, bonus.Length-1);
+        //int bonusIndex = 1;
         Debug.Log("Spawn bonus award index: " + bonusIndex);
         Instantiate(bonus[bonusIndex], position, Quaternion.identity);
     }
@@ -152,34 +153,27 @@ public class Progression : MonoBehaviour
         }
     }
 
-    // clear all obstacles
-    // TODO: need to work on finding obstacles
+    // find and clear all obstacles
     public void ClearObstacles()
     {
-        Debug.Log("clearing obstacles");
-        Debug.Log(GameObject.Find("Rock"));
-        Debug.Log(GameObject.Find("Fox"));
-        Debug.Log(GameObject.Find("Truck"));
-        //Obstacle[] currObstacles = GetComponentsInChildren<Obstacle>();
-        //List<GameObject> currObstacles = Obstacle.Instance.GetChildren();
-        //foreach (GameObject cObstacle in currObstacles)
-        //{
-        //    Debug.Log(cObstacle.gameObject);
-        //    Debug.Log(cObstacle.gameObject.name);
-        //}
-        
+        GameObject[] gameObjects = FindObjectsOfType<GameObject>();
+        for (var i = 0; i < gameObjects.Length; i++)
+        {
+            // name is "Rock/Fox/Truck(Clone)"
+            if (gameObjects[i].name.Contains("Rock") || gameObjects[i].name.Contains("Fox") || gameObjects[i].name.Contains("Truck"))
+            {
+                //Debug.Log(gameObjects[i] + "  : " + i + " (OBSTACLE)");
+                Destroy(gameObjects[i]);
+            }
+        }
+    }
 
-
-
-        //GameObject go = GameObject.Find(obstacles[2]);
-        //Debug.Log(go);
-        ////if the tree exist then destroy it
-        //while (go)
-        //{
-        //    Destroy(go.gameObject);
-        //    Debug.Log(name + "has been destroyed.");
-        //    go = GameObject.Find("Fox");
-        //}
+    // spawn extra egg
+    public void SpawnEggAward(Vector2 position)
+    {
+        Instantiate(egg, position, Quaternion.identity);
+        GameDisplay.Instance.eggList.Add(this.gameObject);
+        GameDisplay.Instance.eggCount += 1;
     }
 
     private bool CheckBounds2D(Vector2 position, Vector2 boundsSize) {

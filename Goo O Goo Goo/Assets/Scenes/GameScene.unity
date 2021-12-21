@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 5972981911649799287, guid: 55936a0895c085d4bae74d0b94f03fda, type: 3}
+  egg: {fileID: 5722555237612982, guid: aedc3c8814fa1e142a76fabd8b2e3922, type: 3}
   obstacles:
   - {fileID: 5051520726033178385, guid: 79a6f9630019900428be4c0cfc78ffed, type: 3}
   - {fileID: 6907485945082773876, guid: 82d56855d3e1da44288d2272d13440d7, type: 3}

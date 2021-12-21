@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{55F7962B-0612-CB2E-8BDD-9866F2994740}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Map Objects/BonusAward.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Game Managers/bottomLineTouched.cs">
     <Files>
-      <File FileName="Assets/Script/Map Objects/Obstacle.cs" Line="48" Column="26" />
+      <File FileName="Assets/Script/Map Objects/Obstacle.cs" Line="36" Column="71" />
       <File FileName="Assets/Script/Map Objects/Coin.cs" Line="18" Column="21" />
-      <File FileName="Assets/Script/EggControl.cs" Line="47" Column="1" />
-      <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="72" Column="87" />
-      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="156" Column="47" />
+      <File FileName="Assets/Script/EggControl.cs" Line="35" Column="59" />
+      <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="26" Column="13" />
+      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="132" Column="27" />
+      <File FileName="Assets/Script/Game Managers/GameDisplay.cs" Line="5" Column="25" />
+      <File FileName="Assets/Script/Game Managers/bottomLineTouched.cs" Line="10" Column="23" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,10 +15,11 @@
           <Node name="Goo O Goo Goo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Script" expanded="True">
-                <Node name="Game Managers" expanded="True" />
-                <Node name="Map Objects" expanded="True">
-                  <Node name="BonusAward.cs" selected="True" />
+                <Node name="Characters" expanded="True" />
+                <Node name="Game Managers" expanded="True">
+                  <Node name="bottomLineTouched.cs" selected="True" />
                 </Node>
+                <Node name="Map Objects" expanded="True" />
               </Node>
             </Node>
           </Node>

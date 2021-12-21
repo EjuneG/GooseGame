@@ -26,7 +26,7 @@ public class BonusAward : MonoBehaviour
             // name is "...Award(Clone)"
             if (bonusType.Contains("EggAward"))
             {
-                GenerateEggAward();
+                GenerateEggAward(eggCollider);
             }
             else if (bonusType.Contains("GoldAward"))
             {
@@ -38,17 +38,17 @@ public class BonusAward : MonoBehaviour
             }
 
             Destroy(this.gameObject);
-
-
-
-
         }
     }
 
     // eggaward -> extra egg
-    private void GenerateEggAward()
+    private void GenerateEggAward(Collider2D eggCollider)
     {
         Debug.Log("generating egg award");
+
+        Vector2 position = eggCollider.transform.position;
+        Progression.Instance.SpawnEggAward(position);
+
     }
 
     // goldaward -> clear obstables, gold spread all over screen
