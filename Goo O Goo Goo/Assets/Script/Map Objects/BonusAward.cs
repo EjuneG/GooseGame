@@ -18,7 +18,7 @@ public class BonusAward : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D eggCollider)
     {
-        if (eggCollider.gameObject.name.Equals("Egg"))
+        if (eggCollider.gameObject.tag.Equals("Egg"))
         {
             Debug.Log(eggCollider.gameObject.name + " : " + gameObject.name + " : " + Time.time);
             string bonusType = gameObject.name;

@@ -97,25 +97,20 @@ public class Progression : MonoBehaviour
 
     //a first attempt to avoid objects stacking, needs improvement
     void SpawnObject(GameObject objectToSpawn) {
-        Bounds colliderBound = objectToSpawn.GetComponent<PolygonCollider2D>().bounds;
-        float sqrHalfBoxSize = colliderBound.extents.sqrMagnitude;
-        float overlapingCircleRadius = Mathf.Sqrt(sqrHalfBoxSize + sqrHalfBoxSize);
-        bool spawnThis = false;
+        Vector3 rendererSize = objectToSpawn.GetComponent<SpriteRenderer>().bounds.extents;
+        Debug.Log("Scanned Area: " + rendererSize);
         int tryAttempts = 10;
         //Debug.Log("Spawn Object Called");
         //try to spawn this 10 times if finds conflict
-        while (tryAttempts > 0 && !spawnThis) {
-            spawnThis = true; //set to true, if hit, then set back to false
+        while (tryAttempts > 0) {
             //Debug.Log("While Loop Entered");
             Vector2 positionToSpawn = new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(0, gameboardY));
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(positionToSpawn, overlapingCircleRadius);
-            foreach(Collider2D otherCollider in hitColliders){
-                spawnThis = false;
-                //Debug.Log("Intersection Stopped");
-                break;
-            }
-            if (spawnThis) {
+            Collider2D hitCollider = Physics2D.OverlapBox(positionToSpawn, rendererSize, 0);
+            if (!hitCollider) {
                 Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity);
+                break;
+            } else {
+                Debug.Log("Object Not Spawning" + objectToSpawn + " " + rendererSize);
             }
             tryAttempts--;
         }

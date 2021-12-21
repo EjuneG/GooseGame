@@ -56,11 +56,11 @@ public class Goose : MonoBehaviour
 
     //i put down constance to save time, better change them later
     protected bool notOnRightEdge(Transform transform) {
-        return transform.position.x < 3.6f;
+        return transform.position.x < 4.2f;
     }
 
     protected bool notOnLeftEdge(Transform transform) {
-        return transform.position.x > -3.6f;
+        return transform.position.x > -4.3f;
     }
 
     protected void flipLeft(Transform transform) {

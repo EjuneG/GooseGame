@@ -47,11 +47,15 @@ public class GameDisplay : MonoBehaviour
                 Debug.Log("Egg Hit Bonus But No Goose Found");
                 break;
         }
-        StartCoroutine(playAddAnimation(point, addScoreTextColor));
+        Text newAddScoreText = Instantiate(addScoreText);
+
+        newAddScoreText.transform.SetParent(GameObject.Find("StatView").transform);
+        newAddScoreText.color = addScoreTextColor;
+        newAddScoreText.text = "+" + point;
+
         this.points += point;
 
     }
-
     IEnumerator playAddAnimation(int pointToAdd, Color textColor) {
         Debug.Log("This worked");
         Text newAddScoreText = Instantiate(addScoreText);

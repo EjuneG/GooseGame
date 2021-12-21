@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8113774425958716193}
   - component: {fileID: 3929057656974707288}
   - component: {fileID: 392227652650729836}
-  - component: {fileID: 6006460708730847049}
   - component: {fileID: 7747930436711682003}
+  - component: {fileID: 2697669934371609899}
   m_Layer: 5
   m_Name: AddScore
   m_TagString: Untagged
@@ -81,18 +81,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
---- !u!114 &6006460708730847049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695311867970182721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f529dc7e8fa7c2b4d9391a8dd6392901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &7747930436711682003
 Animator:
   serializedVersion: 3
@@ -112,3 +100,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2697669934371609899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695311867970182721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e381867653cdb6542ad4d08e29972cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0

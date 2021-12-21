@@ -187,7 +187,6 @@ public class EggControl : MonoBehaviour
     private void updateBottomSpeed(int difficulty) {
         switch (difficulty) {
             case 1:
-                Debug.Log("updated to new speed");
                 speedBottomThreshold = 3.5f * 1.1f;
                 break;
             case 2:

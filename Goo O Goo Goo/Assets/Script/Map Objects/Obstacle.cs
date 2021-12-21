@@ -13,7 +13,7 @@ public class Obstacle : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D eggCollider) {
-        if (eggCollider.gameObject.name.Equals("Egg")) {
+        if (eggCollider.gameObject.tag.Equals("Egg")) {
             EggControl eggColliding = eggCollider.gameObject.GetComponent<EggControl>();
             string goose = eggCollider.gameObject.gameObject.GetComponent<EggControl>().lastTouchedBy;
             if(goose.Equals("BigGoose")) {
@@ -26,7 +26,7 @@ public class Obstacle : MonoBehaviour
                 HP -= 1;
                 //send message to UI -- Mage Goose
             }
-            animator.SetFloat("HP", this.HP);
+            //animator.SetFloat("HP", this.HP); no animaton for now
             AudioManager.Instance.Play("breakHouse");
             if (HP <= 0) {
                 int scoreToAdd = Score * eggColliding.getMultiplier();
