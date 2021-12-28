@@ -34,7 +34,7 @@ public class Obstacle : MonoBehaviour
 
                 // add bonus award object in obstacle coordinates
                 Vector2 position = this.gameObject.transform.position;
-                Debug.Log("Destroyed obstacle position: " + position);
+                //Debug.Log("Destroyed obstacle position: " + position);
                 Progression.Instance.SpawnBonusAward(position);
 
 

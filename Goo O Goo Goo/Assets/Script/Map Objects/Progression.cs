@@ -124,7 +124,6 @@ public class Progression : MonoBehaviour
     public void SpawnBonusAward(Vector2 position)
     {
         int bonusIndex = Random.Range(0, bonus.Length-1);
-        //int bonusIndex = 1;
         Debug.Log("Spawn bonus award index: " + bonusIndex);
         Instantiate(bonus[bonusIndex], position, Quaternion.identity);
     }

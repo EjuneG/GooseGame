@@ -1,13 +1,10 @@
 ﻿<Properties StartupConfiguration="{55F7962B-0612-CB2E-8BDD-9866F2994740}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Game Managers/bottomLineTouched.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Map Objects/Progression.cs">
     <Files>
-      <File FileName="Assets/Script/Map Objects/Obstacle.cs" Line="36" Column="71" />
-      <File FileName="Assets/Script/Map Objects/Coin.cs" Line="18" Column="21" />
-      <File FileName="Assets/Script/EggControl.cs" Line="35" Column="59" />
-      <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="26" Column="13" />
-      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="132" Column="27" />
-      <File FileName="Assets/Script/Game Managers/GameDisplay.cs" Line="5" Column="25" />
-      <File FileName="Assets/Script/Game Managers/bottomLineTouched.cs" Line="10" Column="23" />
+      <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="83" Column="7" />
+      <File FileName="Assets/Script/Game Managers/GameDisplay.cs" Line="75" Column="32" />
+      <File FileName="Assets/Script/Game Managers/bottomLineTouched.cs" Line="11" Column="9" />
+      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="126" Column="58" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,14 +13,17 @@
             <Node name="Assets" expanded="True">
               <Node name="Script" expanded="True">
                 <Node name="Characters" expanded="True" />
-                <Node name="Game Managers" expanded="True">
-                  <Node name="bottomLineTouched.cs" selected="True" />
+                <Node name="Game Managers" expanded="True" />
+                <Node name="Map Objects" expanded="True">
+                  <Node name="Progression.cs" selected="True" />
                 </Node>
-                <Node name="Map Objects" expanded="True" />
               </Node>
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
