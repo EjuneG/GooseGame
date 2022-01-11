@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6613642261227997389}
   m_Layer: 0
   m_Name: X2Award
-  m_TagString: Untagged
+  m_TagString: X2Award
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

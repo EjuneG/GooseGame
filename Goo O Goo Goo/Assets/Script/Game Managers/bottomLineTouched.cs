@@ -9,7 +9,7 @@ public class bottomLineTouched : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         // adjust egg count
         // name is "Egg" or "Egg(Clone)"
-        if (collision.gameObject.name.Contains("Egg")) {
+        if (collision.gameObject.tag.Equals("Egg")) {
             GameDisplay.Instance.eggCount -= 1;
         }
         // game over if no egg left

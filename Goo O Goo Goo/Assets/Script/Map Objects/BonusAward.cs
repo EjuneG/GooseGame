@@ -21,20 +21,23 @@ public class BonusAward : MonoBehaviour
         if (eggCollider.gameObject.tag.Equals("Egg") && !gameObject.transform.localScale.Equals(new Vector3(0, 0, 0)))
         {
             //Debug.Log(eggCollider.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-            string bonusType = gameObject.name;
 
-            // name is "...Award(Clone)"
-            if (bonusType.Contains("EggAward"))
+            // trigger bonus award by bonus type (saved as tag)
+            string bonusType = gameObject.tag;
+            switch (bonusType)
             {
-                GenerateEggAward(eggCollider);
-            }
-            else if (bonusType.Contains("GoldAward"))
-            {
-                GenerateGoldAward();
-            }
-            else if (bonusType.Contains("X2Award"))
-            {
-                GenerateX2Award();
+                case "EggAward":
+                    GenerateEggAward(eggCollider);
+                    break;
+                case "GoldAward":
+                    GenerateGoldAward();
+                    break;
+                case "X2Award":
+                    GenerateX2Award();
+                    break;
+                default:
+                    Debug.Log("Unexpected bonus award triggered.");
+                    break;
             }
 
             // should not detroy current gameobject yet, script is needed for wait inumerator

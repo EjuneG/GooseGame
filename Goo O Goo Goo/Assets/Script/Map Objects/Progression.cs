@@ -11,10 +11,12 @@ public class Progression : MonoBehaviour
     public GameObject[] bonus;
     public int difficultyLevel;
     private float timePassed = 0;
+    private int dropTime = 1;
     [SerializeField]private float gameboardX;
     [SerializeField]private float gameboardY;
 
-    private int dropTime = 1;
+    // hard-coded constant values
+    public const float goldDistance = 1f;
 
     void Awake() {
         Instance = this;
@@ -39,7 +41,7 @@ public class Progression : MonoBehaviour
 
         while (y <= gameboardY) {
             Instantiate(coin, new Vector3(x, y), Quaternion.identity);
-            y += 0.5f;
+            y += goldDistance;
         }
     }
     void Spawn() {
@@ -132,7 +134,7 @@ public class Progression : MonoBehaviour
     public void SpawnGoldAward()
     {
         Debug.Log("progression: spawning gold");
-        // loop over gameboard x,y, spawn gold over 0.5 distance
+        // loop over gameboard x,y, spawn gold over goldDistance
         float x = -gameboardX;
         float y = -gameboardY;
         while (x <= gameboardX)
@@ -140,10 +142,10 @@ public class Progression : MonoBehaviour
             while (y <= gameboardY)
             {
                 Instantiate(coin, new Vector2(x, y), Quaternion.identity);
-                y += 0.5f;
+                y += goldDistance;
             }
-            x += 0.5f;
-            y = -gameboardX;
+            x += goldDistance;
+            y = -gameboardY;
         }
     }
 
@@ -153,8 +155,9 @@ public class Progression : MonoBehaviour
         GameObject[] gameObjects = FindObjectsOfType<GameObject>();
         for (var i = 0; i < gameObjects.Length; i++)
         {
-            // name is "Rock/Fox/Truck(Clone)"
-            if (gameObjects[i].name.Contains("Rock") || gameObjects[i].name.Contains("Fox") || gameObjects[i].name.Contains("Truck"))
+            // find and destroy all objects with tag "Obstacle"
+            if (gameObjects[i].tag.Equals("Obstacle"))
+            //if (gameObjects[i].name.Contains("Rock") || gameObjects[i].name.Contains("Fox") || gameObjects[i].name.Contains("Truck"))
             {
                 //Debug.Log(gameObjects[i] + "  : " + i + " (OBSTACLE)");
                 Destroy(gameObjects[i]);

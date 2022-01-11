@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7976332259124044827}
   m_Layer: 0
   m_Name: GoldAward
-  m_TagString: Untagged
+  m_TagString: GoldAward
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
