@@ -17,6 +17,7 @@ public class Progression : MonoBehaviour
 
     // hard-coded constant values
     public const float goldDistance = 1f;
+    public const float goldBottomBorderY = 0f;
 
     void Awake() {
         Instance = this;
@@ -37,7 +38,7 @@ public class Progression : MonoBehaviour
 
     void SpawnCol() {
         float x = Random.Range(-gameboardX, gameboardX);
-        float y = 0;
+        float y = goldBottomBorderY;
 
         while (y <= gameboardY) {
             Instantiate(coin, new Vector3(x, y), Quaternion.identity);
@@ -48,7 +49,7 @@ public class Progression : MonoBehaviour
         if(dropTime % 17 == 0) {
             SpawnCol();
         }else if(dropTime % 5 == 0) {
-            Instantiate(coin, new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(0, gameboardY)), Quaternion.identity);
+            Instantiate(coin, new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(goldBottomBorderY, gameboardY)), Quaternion.identity);
         }
         switch (difficultyLevel) {
             case 0:
@@ -106,7 +107,7 @@ public class Progression : MonoBehaviour
         //try to spawn this 10 times if finds conflict
         while (tryAttempts > 0) {
             //Debug.Log("While Loop Entered");
-            Vector2 positionToSpawn = new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(0, gameboardY));
+            Vector2 positionToSpawn = new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(goldBottomBorderY, gameboardY));
             Collider2D hitCollider = Physics2D.OverlapBox(positionToSpawn, rendererSize, 0);
             if (!hitCollider) {
                 Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity);
@@ -125,7 +126,8 @@ public class Progression : MonoBehaviour
     // called from Obstacle class
     public void SpawnBonusAward(Vector2 position)
     {
-        int bonusIndex = Random.Range(0, bonus.Length-1);
+        int bonusIndex = 1;
+        //int bonusIndex = Random.Range(0, bonus.Length-1);
         Debug.Log("Spawn bonus award index: " + bonusIndex);
         Instantiate(bonus[bonusIndex], position, Quaternion.identity);
     }
@@ -136,16 +138,16 @@ public class Progression : MonoBehaviour
         Debug.Log("progression: spawning gold");
         // loop over gameboard x,y, spawn gold over goldDistance
         float x = -gameboardX;
-        float y = -gameboardY;
+        float y = gameboardY;
         while (x <= gameboardX)
         {
-            while (y <= gameboardY)
+            while (y >= goldBottomBorderY)
             {
                 Instantiate(coin, new Vector2(x, y), Quaternion.identity);
-                y += goldDistance;
+                y -= goldDistance;
             }
             x += goldDistance;
-            y = -gameboardY;
+            y = gameboardY;
         }
     }
 
@@ -160,6 +162,20 @@ public class Progression : MonoBehaviour
             //if (gameObjects[i].name.Contains("Rock") || gameObjects[i].name.Contains("Fox") || gameObjects[i].name.Contains("Truck"))
             {
                 //Debug.Log(gameObjects[i] + "  : " + i + " (OBSTACLE)");
+                Destroy(gameObjects[i]);
+            }
+        }
+    }
+
+    // find and clear all Gold
+    public void ClearGold()
+    {
+        GameObject[] gameObjects = FindObjectsOfType<GameObject>();
+        for (var i = 0; i < gameObjects.Length; i++)
+        {
+            // find and destroy all objects with tag "Gold"
+            if (gameObjects[i].tag.Equals("Gold"))
+            {
                 Destroy(gameObjects[i]);
             }
         }

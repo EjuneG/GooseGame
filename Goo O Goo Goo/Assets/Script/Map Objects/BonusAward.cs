@@ -62,6 +62,9 @@ public class BonusAward : MonoBehaviour
         // clear all obstables
         Progression.Instance.ClearObstacles();
 
+        // clear other gold to make screen look neat
+        Progression.Instance.ClearGold();
+
         // gold spread all over screen
         Progression.Instance.SpawnGoldAward();  // gold will disappear after its life time in Coin.FixedUpdate()
 
