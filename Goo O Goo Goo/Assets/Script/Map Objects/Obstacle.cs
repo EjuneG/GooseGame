@@ -8,11 +8,11 @@ public class Obstacle : MonoBehaviour
     public int Score = 0;
     Animator animator;
 
-    private void Awake() {
+    protected virtual void Awake() {
         animator = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter2D(Collision2D eggCollider) {
+    protected virtual void OnCollisionEnter2D(Collision2D eggCollider) {
         if (eggCollider.gameObject.tag.Equals("Egg")) {
             EggControl eggColliding = eggCollider.gameObject.GetComponent<EggControl>();
             string goose = eggCollider.gameObject.gameObject.GetComponent<EggControl>().lastTouchedBy;

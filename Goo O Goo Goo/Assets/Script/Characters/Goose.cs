@@ -5,17 +5,15 @@ using UnityEngine;
 public class Goose : MonoBehaviour
 {
     protected Rigidbody2D gooseRB;
-    [SerializeField] protected float speed;
+    [SerializeField] protected float speed = 2;
     protected CommandKey keyUsing;
     protected Animator gooseAnim;
-    public GameObject abc;
     
 
     //animator
-    bool walk;
-    bool head;
+    protected bool walk;
 
-    void Awake()
+    protected virtual void Awake()
     {
         gooseRB = gameObject.GetComponent<Rigidbody2D>();
         gooseAnim = gameObject.GetComponent<Animator>();
@@ -26,7 +24,7 @@ public class Goose : MonoBehaviour
         
     }
 
-    protected void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         GooseMovement();
         GooseAbility();
         GooseAnimation();
@@ -50,7 +48,7 @@ public class Goose : MonoBehaviour
     //assuming all might have an ability for future flexibility
     protected virtual void GooseAbility() { }
 
-    protected void GooseAnimation() {
+    protected virtual void GooseAnimation() {
         gooseAnim.SetBool("walk", walk);
     }
 

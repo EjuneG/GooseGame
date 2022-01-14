@@ -5,12 +5,17 @@ using UnityEngine;
 public class EggControl : MonoBehaviour
 {
     Rigidbody2D rgb;
-    public float defaultSpeed = 2f;
+    public const float defaultSpeed = 2f;
     [SerializeField]private float OneLevelSpeedChange = 0.5f;
     Vector2 direction;
     Vector2 normalSpeed;
     [SerializeField]private float currentSpeed;
+    public float CurrentSpeed {
+        get { return currentSpeed;}
+        set { currentSpeed = value;}
+    }
     private float speedToLaunch;
+
     public int bounceCount;
     public float quickGooseIncrease = 0.25f;
     public float bigGooseDecrease = -0.25f;
@@ -54,6 +59,7 @@ public class EggControl : MonoBehaviour
         updatePointMultiplier();
         //Debug.Log("Point Multi: " + pointMultiplier);
         updateSpeedVFX();
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -201,6 +207,10 @@ public class EggControl : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void updateRotation(Vector3 origPos) {
+        //TODO
     }
 
     public void setMultiplier(int inputPointMultiplier)

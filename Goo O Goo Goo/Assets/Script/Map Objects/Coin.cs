@@ -31,19 +31,6 @@ public class Coin : MonoBehaviour
             EggControl eggColliding = collision.gameObject.GetComponent<EggControl>();
             int pointToAdd = value * eggColliding.getMultiplier();
             GameDisplay.Instance.addPoint(pointToAdd, touchedGoose);
-            switch (touchedGoose) {
-                case "MageGoose":
-                    Debug.Log("Mage Goose may not have been set up correctly");
-                    //mage goose
-                    break;
-                case "BigGoose":
-                    break;
-                case "QuickGoose":
-                    break;
-                default:
-                    Debug.Log("Egg Hit Bonus But No Goose Found");
-                    break;
-            }
             AudioManager.Instance.Play("getWater");
             Destroy(this.gameObject);
         }

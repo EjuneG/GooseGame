@@ -10,14 +10,16 @@ public class MageGoose : Goose
     [SerializeField]private float holdingTime = 2f; //how long can hold the egg
     private float timeHeld = 0; //time MageGoose has held onto the egg
 
-    private void Awake() {
+    override protected void Awake() {
+        base.Awake();
         holdingEgg = false;
     }
 
-    private void FixedUpdate() {
+    override protected void FixedUpdate() {
         base.FixedUpdate();
         if (holdingEgg) {
-            EggBeingHeld.gameObject.transform.position = holdingPosition.position;
+            Transform EggTransform = EggBeingHeld.gameObject.transform;
+            EggTransform.position = holdingPosition.position;
             timeHeld -= Time.fixedDeltaTime;
             if (timeHeld <= 0) {
                 EggBeingHeld.eggLaunch();
@@ -33,8 +35,12 @@ public class MageGoose : Goose
         }
     }
 
+    override protected void GooseAnimation() {
+        base.GooseAnimation();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (GameDisplay.Instance.eggCount != 0 && !holdingEgg) {
+        if (!holdingEgg && collision.gameObject.tag == "Egg") {
             EggBeingHeld = collision.gameObject.GetComponent<EggControl>();
             holdingEgg = true;
             AudioManager.Instance.Play("mageGet");

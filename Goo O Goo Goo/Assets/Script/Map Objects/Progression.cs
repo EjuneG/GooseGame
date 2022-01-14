@@ -53,6 +53,9 @@ public class Progression : MonoBehaviour
         }
         switch (difficultyLevel) {
             case 0:
+                if(dropTime % 25 == 0) {
+                    SpawnObject(obstacles[3]);
+                }
                 if(dropTime % 15 == 0) {
                     SpawnObject(obstacles[2]);
                 }else if(dropTime % 10 == 0) {
@@ -62,6 +65,9 @@ public class Progression : MonoBehaviour
                 }
                 break;
             case 1:
+                if (dropTime % 25 == 0) {
+                    SpawnObject(obstacles[3]);
+                }
                 if (dropTime % 12 == 0) {
                     SpawnObject(obstacles[2]);
                 } else if (dropTime % 8 == 0) {
@@ -71,6 +77,9 @@ public class Progression : MonoBehaviour
                 }
                 break;
             case 2:
+                if (dropTime % 15 == 0) {
+                    SpawnObject(obstacles[3]);
+                }
                 if (dropTime % 8 == 0) {
                     SpawnObject(obstacles[2]);
                 } else if (dropTime % 6 == 0) {
@@ -81,6 +90,9 @@ public class Progression : MonoBehaviour
                 }
                 break;
             case 3:
+                if (dropTime % 15 == 0) {
+                    SpawnObject(obstacles[3]);
+                }
                 if (dropTime % 8 == 0) {
                     SpawnObject(obstacles[2]);
                 } else if (dropTime % 6 == 0) {
@@ -101,7 +113,6 @@ public class Progression : MonoBehaviour
     //a first attempt to avoid objects stacking, needs improvement
     void SpawnObject(GameObject objectToSpawn) {
         Vector3 rendererSize = objectToSpawn.GetComponent<SpriteRenderer>().bounds.extents;
-        Debug.Log("Scanned Area: " + rendererSize);
         int tryAttempts = 10;
         //Debug.Log("Spawn Object Called");
         //try to spawn this 10 times if finds conflict
@@ -113,7 +124,6 @@ public class Progression : MonoBehaviour
                 Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity);
                 break;
             } else {
-                Debug.Log("Object Not Spawning" + objectToSpawn + " " + rendererSize);
             }
             tryAttempts--;
         }

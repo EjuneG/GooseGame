@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuickGoose : MonoBehaviour
+public class QuickGoose : Goose
 {
+    //animator
+    bool head;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "Egg") {
+            base.gooseAnim.Play("head");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    override protected void GooseAnimation() {
+        base.GooseAnimation();
+        gooseAnim.SetBool("head", head);
     }
+    
 }
