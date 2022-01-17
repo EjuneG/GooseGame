@@ -16,6 +16,11 @@ public class EggControl : MonoBehaviour
     }
     private float speedToLaunch;
 
+    //private float sensitivity = 0.05f;
+    Quaternion lastRotation;
+    Quaternion deltaRotation;
+
+
     public int bounceCount;
     public float quickGooseIncrease = 0.25f;
     public float bigGooseDecrease = -0.25f;
@@ -38,6 +43,7 @@ public class EggControl : MonoBehaviour
 
     private void Start() {
         GameDisplay.Instance.eggList.Add(this.gameObject);
+        lastRotation = transform.rotation;
     }
 
 
@@ -59,10 +65,14 @@ public class EggControl : MonoBehaviour
         updatePointMultiplier();
         //Debug.Log("Point Multi: " + pointMultiplier);
         updateSpeedVFX();
-        
+
+        // smooth transition between the two rotations
+        rgb.MoveRotation(deltaRotation);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        updateRotation();
         bounceCount += 1;
         //check where the collision comes from, react differently for each goose
         if (collision.gameObject.name.Equals("QuickGoose")) {
@@ -94,7 +104,7 @@ public class EggControl : MonoBehaviour
         //if (PlayerControl.Instance.quickHead) {
         //    PlayerControl.Instance.quickHead = false;
         //}
-        if(Mathf.Abs(rgb.velocity.normalized.x) > 0.95) {
+        if (Mathf.Abs(rgb.velocity.normalized.x) > 0.95) {
             float oldX = rgb.velocity.normalized.x;
             float oldY = rgb.velocity.normalized.y;
             float newX;
@@ -209,8 +219,10 @@ public class EggControl : MonoBehaviour
         }
     }
 
-    private void updateRotation(Vector3 origPos) {
-        //TODO
+    //https://forum.unity.com/threads/manually-calculate-angular-velocity-of-gameobject.289462/
+    private void updateRotation() {
+        deltaRotation = transform.rotation * Quaternion.Inverse(lastRotation);
+        lastRotation = transform.rotation;
     }
 
     public void setMultiplier(int inputPointMultiplier)
