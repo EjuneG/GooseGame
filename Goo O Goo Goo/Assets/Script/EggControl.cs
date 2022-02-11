@@ -17,11 +17,6 @@ public class EggControl : MonoBehaviour
     private float speedToLaunch;
     [SerializeField] Animator mageGooseAnimator;
 
-    //private float sensitivity = 0.05f;
-    Quaternion lastRotation;
-    Quaternion deltaRotation;
-
-
     public int bounceCount;
     public float quickGooseIncrease = 0.25f;
     public float bigGooseDecrease = -0.25f;
@@ -44,7 +39,6 @@ public class EggControl : MonoBehaviour
 
     private void Start() {
         GameDisplay.Instance.eggList.Add(this.gameObject);
-        lastRotation = transform.rotation;
     }
 
 
@@ -67,13 +61,11 @@ public class EggControl : MonoBehaviour
         //Debug.Log("Point Multi: " + pointMultiplier);
         updateSpeedVFX();
 
-        // smooth transition between the two rotations
-        rgb.MoveRotation(deltaRotation);
-
+        // update rotation based on current velocity, egg points towards its current direction
+        updateRotation();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        updateRotation();
         bounceCount += 1;
         //check where the collision comes from, react differently for each goose
         if (collision.gameObject.name.Equals("QuickGoose")) {
@@ -220,10 +212,13 @@ public class EggControl : MonoBehaviour
         }
     }
 
-    //https://forum.unity.com/threads/manually-calculate-angular-velocity-of-gameobject.289462/
+    // update rotation based on current velocity, egg points towards its current direction
     private void updateRotation() {
-        deltaRotation = transform.rotation * Quaternion.Inverse(lastRotation);
-        lastRotation = transform.rotation;
+        // get the angle from current velocity
+        // adjust angle: rotate by 90 degrees so that 0 degree points upwards
+        float angle = Mathf.Atan2(rgb.velocity.y, rgb.velocity.x) * Mathf.Rad2Deg - 90;
+        //Debug.Log("angle" + angle);
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     public void setMultiplier(int inputPointMultiplier)
