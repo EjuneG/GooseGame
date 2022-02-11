@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9091582559555961443}
   - component: {fileID: 3074282590665794977}
   - component: {fileID: 7976332259124044827}
+  - component: {fileID: -4499517160737389617}
   m_Layer: 0
   m_Name: GoldAward
   m_TagString: GoldAward
@@ -114,3 +115,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.54
+--- !u!95 &-4499517160737389617
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5041440484131724811}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a562d95d2636464db8dac3752f1d55b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

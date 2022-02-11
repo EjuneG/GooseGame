@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7746121310637706940}
   - component: {fileID: -1377905005162148163}
   - component: {fileID: 1042615683804185499}
+  - component: {fileID: -3841298483871849547}
   m_Layer: 0
   m_Name: EggAward
   m_TagString: EggAward
@@ -114,3 +115,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameboardX: 0
   gameboardY: 0
+--- !u!95 &-3841298483871849547
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232967464971073577}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a562d95d2636464db8dac3752f1d55b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

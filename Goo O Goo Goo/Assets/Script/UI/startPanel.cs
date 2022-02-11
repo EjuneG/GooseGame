@@ -15,7 +15,7 @@ public class startPanel : MonoBehaviour
     public void startGame() {
         AudioManager.Instance.StopPlay("startBGM");
         AudioManager.Instance.Play("bgm");
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("CharacterSelection");
     }
 
     public void startTutorial() {

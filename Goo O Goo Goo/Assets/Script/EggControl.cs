@@ -15,6 +15,7 @@ public class EggControl : MonoBehaviour
         set { currentSpeed = value;}
     }
     private float speedToLaunch;
+    [SerializeField] Animator mageGooseAnimator;
 
     //private float sensitivity = 0.05f;
     Quaternion lastRotation;

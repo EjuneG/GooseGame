@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BonusAward : MonoBehaviour
 {
-    //Animator animator;
+    Animator animator;
 
     private float bonusX2Time = 10;
     [SerializeField] private float gameboardX;
@@ -12,7 +12,7 @@ public class BonusAward : MonoBehaviour
 
     private void Awake()
     {
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D eggCollider)
@@ -40,6 +40,7 @@ public class BonusAward : MonoBehaviour
                     break;
             }
 
+            animator.Play("onHit");
             // should not detroy current gameobject yet, script is needed for wait inumerator
             Destroy(gameObject.GetComponent<Rigidbody>()); // disable rigidbody
             gameObject.transform.localScale = new Vector3(0, 0, 0); // hide
@@ -53,7 +54,7 @@ public class BonusAward : MonoBehaviour
 
         Vector2 position = eggCollider.transform.position;
         Progression.Instance.SpawnEggAward(position);
-        Destroy(this.gameObject);
+        StartCoroutine(killObstacle());
     }
 
     // goldaward -> clear obstables, gold spread all over screen
@@ -68,7 +69,7 @@ public class BonusAward : MonoBehaviour
         // gold spread all over screen
         Progression.Instance.SpawnGoldAward();  // gold will disappear after its life time in Coin.FixedUpdate()
 
-        Destroy(this.gameObject);
+        StartCoroutine(killObstacle());
     }
 
 
@@ -108,5 +109,9 @@ public class BonusAward : MonoBehaviour
 
         Destroy(this.gameObject);
     }
-    
+
+    IEnumerator killObstacle() {
+        yield return new WaitForSeconds(0.8f);
+        Destroy(this.gameObject);
+    }
 }

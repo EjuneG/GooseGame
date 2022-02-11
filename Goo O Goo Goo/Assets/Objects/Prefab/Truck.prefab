@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6386301123133699643}
   - component: {fileID: 4849221505399589691}
   - component: {fileID: 3538027339426611545}
+  - component: {fileID: -2452056010263791754}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Obstacle
@@ -319,3 +320,22 @@ PolygonCollider2D:
       - {x: 2.5616677, y: 3.2087555}
       - {x: 2.5483258, y: 3.2487817}
       - {x: 2.4949577, y: 3.2487817}
+--- !u!95 &-2452056010263791754
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386301123133699641}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55f0792cd52360e488f228568a84e4ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

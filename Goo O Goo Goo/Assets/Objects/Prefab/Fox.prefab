@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6907485945082773874}
   - component: {fileID: 7335823754397730702}
   - component: {fileID: 721378899758349000}
+  - component: {fileID: 8694622879343329430}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Obstacle
@@ -275,3 +276,22 @@ PolygonCollider2D:
       - {x: -7.2447166, y: -8.665642}
       - {x: -7.1913486, y: -8.665642}
       - {x: -7.178006, y: -8.6523}
+--- !u!95 &8694622879343329430
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907485945082773876}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55f0792cd52360e488f228568a84e4ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

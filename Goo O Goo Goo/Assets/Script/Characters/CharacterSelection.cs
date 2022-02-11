@@ -10,15 +10,26 @@ public class CharacterSelection : MonoBehaviour
     public static CharacterSelection Instance;
     public Goose player1Goose;
     public Goose player2Goose;
+    public string p1GooseName;
+    public string p2GooseName;
+    [SerializeField] private Goose[] gooses = new Goose[3];
 
     void Awake() {
-        Instance = this;
+        if (Instance == null) {
+            Instance = this;
+        } else if (Instance != this) {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+
     }
-    public Goose[] getGooseBelonging() {
-        Goose[] playerGooses = new Goose[2];
-        //brute for testing
-        playerGooses[0] = player1Goose;
-        playerGooses[1] = player2Goose;
-        return playerGooses;
+    public void saveGooseNames(string player1GooseName, string player2GooseName) {
+        p1GooseName = player1GooseName;
+        p2GooseName = player2GooseName;
+    }
+
+    public void setPlayerGooses(Goose p1Goose, Goose p2Goose) {
+        player1Goose = p1Goose;
+        player2Goose = p2Goose;
     }
 }

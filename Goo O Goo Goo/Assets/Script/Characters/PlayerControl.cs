@@ -6,8 +6,6 @@ public class PlayerControl : MonoBehaviour
 {
 
     public static PlayerControl Instance;
-    public float leftBorder;
-    public float rightBorder;
     [SerializeField]Transform mageEggPosition;
     private ControlState currentControlState = ControlState.game; //set it to game for now
     private CharacterSelection characters;

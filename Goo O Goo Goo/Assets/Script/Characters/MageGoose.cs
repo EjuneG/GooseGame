@@ -10,6 +10,10 @@ public class MageGoose : Goose
     [SerializeField]private float holdingTime = 2f; //how long can hold the egg
     private float timeHeld = 0; //time MageGoose has held onto the egg
 
+    //animator
+    bool hold;
+    bool shoot;
+
     override protected void Awake() {
         base.Awake();
         holdingEgg = false;
@@ -37,6 +41,8 @@ public class MageGoose : Goose
 
     override protected void GooseAnimation() {
         base.GooseAnimation();
+        gooseAnim.SetBool("hold", hold);
+        gooseAnim.SetBool("shoot", shoot);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -44,9 +50,16 @@ public class MageGoose : Goose
             EggBeingHeld = collision.gameObject.GetComponent<EggControl>();
             holdingEgg = true;
             AudioManager.Instance.Play("mageGet");
+            base.gooseAnim.Play("hold");
             timeHeld = holdingTime;
             EggBeingHeld.eggStop();
             EggBeingHeld.lastTouchedBy = "MageGoose";
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Egg") {
+            base.gooseAnim.Play("shoot");
         }
     }
 }

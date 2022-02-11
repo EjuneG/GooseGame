@@ -16,6 +16,7 @@ public class Obstacle : MonoBehaviour
         if (eggCollider.gameObject.tag.Equals("Egg")) {
             EggControl eggColliding = eggCollider.gameObject.GetComponent<EggControl>();
             string goose = eggCollider.gameObject.gameObject.GetComponent<EggControl>().lastTouchedBy;
+            animator.Play("onHit");
             if(goose.Equals("BigGoose")) {
                 //send message to UI display
                 HP -= 2;
@@ -38,7 +39,7 @@ public class Obstacle : MonoBehaviour
                 Progression.Instance.SpawnBonusAward(position);
 
 
-                Destroy(this.gameObject);
+                StartCoroutine(killObstacle());
             }
         }
     }
@@ -51,5 +52,10 @@ public class Obstacle : MonoBehaviour
             children.Add(tran.gameObject);
         }
         return children;
+    }
+
+    IEnumerator killObstacle() {
+        yield return new WaitForSeconds(0.3f);
+        Destroy(this.gameObject);
     }
 }
