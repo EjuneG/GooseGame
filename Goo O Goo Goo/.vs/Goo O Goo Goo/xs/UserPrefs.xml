@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{55F7962B-0612-CB2E-8BDD-9866F2994740}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/EggControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Map Objects/Obstacle.cs">
     <Files>
       <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="46" Column="10" />
-      <File FileName="Assets/Script/Game Managers/GameDisplay.cs" Line="1" Column="1" />
       <File FileName="Assets/Script/Game Managers/bottomLineTouched.cs" />
-      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="137" Column="32" />
       <File FileName="Assets/Script/EggControl.cs" Line="20" Column="9" />
+      <File FileName="Assets/Script/Map Objects/Obstacle.cs" Line="39" Column="46" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,8 +15,9 @@
               <Node name="Script" expanded="True">
                 <Node name="Characters" expanded="True" />
                 <Node name="Game Managers" expanded="True" />
-                <Node name="Map Objects" expanded="True" />
-                <Node name="EggControl.cs" selected="True" />
+                <Node name="Map Objects" expanded="True">
+                  <Node name="Obstacle.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>

@@ -33,11 +33,10 @@ public class Obstacle : MonoBehaviour
                 int scoreToAdd = Score * eggColliding.getMultiplier();
                 GameDisplay.Instance.addPoint(scoreToAdd, goose);
 
-                // add bonus award object in obstacle coordinates
+                // add bonus award object at the obstacle coordinates
+                // random bonus award will be triggered by chance at a predefined probability
                 Vector2 position = this.gameObject.transform.position;
-                //Debug.Log("Destroyed obstacle position: " + position);
                 Progression.Instance.SpawnBonusAward(position);
-
 
                 StartCoroutine(killObstacle());
             }
@@ -55,7 +54,7 @@ public class Obstacle : MonoBehaviour
     }
 
     IEnumerator killObstacle() {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         Destroy(this.gameObject);
     }
 }

@@ -18,6 +18,7 @@ public class Progression : MonoBehaviour
     // hard-coded constant values
     public const float goldDistance = 1f;
     public const float goldBottomBorderY = 0f;
+    public const float bonusProbability = 0.1f;
 
     void Awake() {
         Instance = this;
@@ -132,14 +133,22 @@ public class Progression : MonoBehaviour
 
     }
 
-    // spawn random bonus award at the position where obstacle is destroyed
+    // spawn random bonus award at the position where obstacle is destroyed 
+    // triggered by chance at a predefined probability
     // called from Obstacle class
     public void SpawnBonusAward(Vector2 position)
     {
-        int bonusIndex = 1;
-        //int bonusIndex = Random.Range(0, bonus.Length-1);
-        Debug.Log("Spawn bonus award index: " + bonusIndex);
-        Instantiate(bonus[bonusIndex], position, Quaternion.identity);
+        // the probability bonus award is only triggered
+        // if bonusRandomChance falls into [0, 0.1) range
+        float bonusRandomChance = Random.Range(0f, 1f);
+        //Debug.Log("bonusRandomChance" + bonusRandomChance);
+        //Debug.Log(bonusRandomChance < bonusProbability);
+        if (bonusRandomChance < bonusProbability)
+        {
+            int bonusIndex = Random.Range(0, bonus.Length - 1);
+            //Debug.Log("Spawn bonus award index: " + bonusIndex);
+            Instantiate(bonus[bonusIndex], position, Quaternion.identity);
+        }
     }
 
     // spawn bonus award, gold spread all over screen
