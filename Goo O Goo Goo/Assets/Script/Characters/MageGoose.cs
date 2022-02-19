@@ -27,7 +27,10 @@ public class MageGoose : Goose
             timeHeld -= Time.fixedDeltaTime;
             if (timeHeld <= 0) {
                 EggBeingHeld.eggLaunch();
+                base.gooseAnim.Play("shoot");
+                StartCoroutine(animationMove(false));
                 holdingEgg = false;
+                EggBeingHeld.BeingHeld = false;
             }
         }
     }
@@ -35,7 +38,10 @@ public class MageGoose : Goose
     protected override void GooseAbility() {
         if (keyUsing == CommandKey.up && holdingEgg) {
             EggBeingHeld.eggLaunch();
+            base.gooseAnim.Play("shoot");
+            StartCoroutine(animationMove(false));
             holdingEgg = false;
+            EggBeingHeld.BeingHeld = false;
         }
     }
 
@@ -49,17 +55,28 @@ public class MageGoose : Goose
         if (!holdingEgg && collision.gameObject.tag == "Egg") {
             EggBeingHeld = collision.gameObject.GetComponent<EggControl>();
             holdingEgg = true;
+            EggBeingHeld.BeingHeld = true;
+            EggBeingHeld.transform.localRotation = Quaternion.Euler(0, 0, 0);
             AudioManager.Instance.Play("mageGet");
             base.gooseAnim.Play("hold");
+            StartCoroutine(animationMove(true));
             timeHeld = holdingTime;
             EggBeingHeld.eggStop();
             EggBeingHeld.lastTouchedBy = "MageGoose";
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Egg") {
-            base.gooseAnim.Play("shoot");
+    IEnumerator animationMove(bool isUp) {
+        float distanceToMove = 0.3f;
+        float moveByOne = 0.015f;
+        while (distanceToMove >= 0) {
+            if (isUp) {
+                this.transform.Translate(Vector2.up * moveByOne, Space.Self);
+            } else {
+                this.transform.Translate(Vector2.down * moveByOne, Space.Self);
+            }
+            distanceToMove -= moveByOne;
+            yield return new WaitForSeconds(0.025f);
         }
     }
 }

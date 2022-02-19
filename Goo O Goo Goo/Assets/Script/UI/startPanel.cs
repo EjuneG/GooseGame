@@ -13,8 +13,6 @@ public class startPanel : MonoBehaviour
     }
 
     public void startGame() {
-        AudioManager.Instance.StopPlay("startBGM");
-        AudioManager.Instance.Play("bgm");
         SceneManager.LoadScene("CharacterSelection");
     }
 

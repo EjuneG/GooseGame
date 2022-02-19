@@ -135,9 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d586be7a15e9042b8cb775751fd97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 2
   OneLevelSpeedChange: 0.5
   currentSpeed: 0
+  mageGooseAnimator: {fileID: 1390258030279864302, guid: eab519387b8864d488dce22a6716b7a8, type: 3}
   bounceCount: 0
   quickGooseIncrease: 0.25
   bigGooseDecrease: -0.25

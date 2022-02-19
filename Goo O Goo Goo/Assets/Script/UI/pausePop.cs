@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class pausePop : MonoBehaviour
@@ -12,8 +13,22 @@ public class pausePop : MonoBehaviour
     public GameObject menuViewUI;
     public GameObject Shade;
     public GameObject quitButton;
+    public GameObject retryButton;
+    public GameObject backButton;
     // Start is called before the first frame update
     // Update is called once per frame
+
+    private void Start() {
+        Button quitBt = quitButton.GetComponent<Button>();
+        Button retryBt = retryButton.GetComponent<Button>();
+        Button backBt = backButton.GetComponent<Button>();
+
+        quitBt.onClick.AddListener(SoundOnClick);
+        retryBt.onClick.AddListener(SoundOnClick);
+        backBt.onClick.AddListener(SoundOnClick);
+
+
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -72,7 +87,12 @@ public class pausePop : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         AudioManager.Instance.StopPlay("lossBGM");
+        AudioManager.Instance.StopPlay("bgm");
         AudioManager.Instance.Play("bgm");
         SceneManager.LoadScene("GameScene");
+    }
+
+    void SoundOnClick() {
+        AudioManager.Instance.Play("menuClick");
     }
 }

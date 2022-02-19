@@ -15,9 +15,9 @@ public class Bush : Obstacle
 
     private void OnTriggerEnter2D(Collider2D collision) {
         //When egg enters, we want to play a sound and gradually slow down the egg a bit if it will not reduce the egg's speed below minimum
-        
-        //play the sound first 
 
+        //play the sound first 
+        AudioManager.Instance.Play("bush");
         //slow down the egg
         if(collision.gameObject.tag == "Egg") {
             EggControl egg = collision.gameObject.GetComponent<EggControl>();

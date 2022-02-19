@@ -20,6 +20,13 @@ public class CharacterSelectionUI : MonoBehaviour
     [SerializeField] private GameObject startIndication;
     [SerializeField] private GameObject title;
 
+    //animators
+    [SerializeField]Animator quickAnim;
+    [SerializeField]Animator mageAnim;
+    [SerializeField]Animator bigAnim;
+    Animator player1Anim;
+    Animator player2Anim;
+
 
     private void Awake() {
         gooseNames.Add(1, "QuickGoose");
@@ -41,6 +48,7 @@ public class CharacterSelectionUI : MonoBehaviour
     private void updateSelectionArrow() {
         if (player1Selected == false) {
             if (Input.GetKeyDown(KeyCode.A) && player1ArrowPlace != 1) {
+                AudioManager.Instance.Play("menuClick");
                 if (player1ArrowPlace - 1 != player2ArrowPlace) {
                     player1ArrowPlace -= 1;
                 } else if (player1ArrowPlace == 3 && player2ArrowPlace == 2) {
@@ -50,6 +58,7 @@ public class CharacterSelectionUI : MonoBehaviour
                 moveArrowTo(player1Arrow, player1ArrowPlace);
                 //player 1 active
             } else if (Input.GetKeyDown(KeyCode.D) && player1ArrowPlace != 3) {
+                AudioManager.Instance.Play("menuClick");
                 if (player1ArrowPlace + 1 != player2ArrowPlace) {
                     player1ArrowPlace += 1;
                 } else if (player1ArrowPlace == 1 && player2ArrowPlace == 2) {
@@ -64,6 +73,7 @@ public class CharacterSelectionUI : MonoBehaviour
         //player 2
         if (player2Selected == false) {
             if (Input.GetKeyDown(KeyCode.LeftArrow) && player2ArrowPlace != 1) {
+                AudioManager.Instance.Play("menuClick");
                 if (player2ArrowPlace - 1 != player1ArrowPlace) {
                     player2ArrowPlace -= 1;
                 } else if (player2ArrowPlace == 3 && player1ArrowPlace == 2) {
@@ -73,6 +83,7 @@ public class CharacterSelectionUI : MonoBehaviour
                 Debug.Log("Player 2 Arrow Place: " + player2ArrowPlace);
                 moveArrowTo(player2Arrow, player2ArrowPlace);
             } else if (Input.GetKeyDown(KeyCode.RightArrow) && player2ArrowPlace != 3) {
+                AudioManager.Instance.Play("menuClick");
                 if (player2ArrowPlace + 1 != player1ArrowPlace) {
                     player2ArrowPlace += 1;
                 } else if (player2ArrowPlace == 1 && player1ArrowPlace == 2) {
@@ -88,22 +99,30 @@ public class CharacterSelectionUI : MonoBehaviour
     private void updateSelectedGoose() {
         //player 1
         if (Input.GetKeyDown(KeyCode.W)){
+            player1Anim = getGooseAnimator(player1ArrowPlace);
             if (player1Selected == false) { //update the current goose as selected goose, set selected to true
                 player1Selected = true;
                 player1Goose = gooseNames[player1ArrowPlace];
+                player1Anim.Play("head");
+                playerGooseHeadSound(player1Goose);
                 //play animation
             } else if (player1Selected == true) {//unselect the current goose
                 player1Selected = false;
                 player1Goose = null;
+                player1Anim.Play("idle");
             }
         }else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            player2Anim = getGooseAnimator(player2ArrowPlace);
             if (player2Selected == false) { //update the current goose as selected goose, set selected to true
                 player2Selected = true;
                 player2Goose = gooseNames[player2ArrowPlace];
+                player2Anim.Play("head");
+                playerGooseHeadSound(player2Goose);
                 //play animation
             } else if (player2Selected == true) {//unselect the current goose
                 player2Selected = false;
                 player2Goose = null;
+                player2Anim.Play("idle");
             }
         }
     }
@@ -150,6 +169,8 @@ public class CharacterSelectionUI : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space)) {
                 CharacterSelection.Instance.saveGooseNames(player1Goose, player2Goose);
+                AudioManager.Instance.StopPlay("startBGM");
+                AudioManager.Instance.Play("bgm");
                 SceneManager.LoadScene("GameScene");
             }
         } else {
@@ -168,21 +189,37 @@ public class CharacterSelectionUI : MonoBehaviour
         }
     }
 
-    IEnumerator lightingUpGoose(GameObject goose) {
-        SpriteRenderer gooseRender = goose.GetComponent<SpriteRenderer>();
-        while(gooseRender.color.r < 255) {
-            float new_r = gooseRender.color.r + 1;
-            gooseRender.color = new Color(new_r, new_r, new_r);
-            yield return new WaitForSeconds(0.02f);
+    private Animator getGooseAnimator(int arrowPosition) {
+        switch (arrowPosition) {
+            case 1:
+                return quickAnim;
+            case 2:
+                return mageAnim;
+            case 3:
+                return bigAnim;
+            default:
+                Debug.Log("Goose Anim GG: plz check");
+                return null;
         }
-            //increase color 1 per 0.1 sec
     }
 
-    private void resetGoose(Coroutine lightingUpGoose, GameObject goose) {
-        StopCoroutine(lightingUpGoose);
-        SpriteRenderer gooseRender = goose.GetComponent<SpriteRenderer>();
-        gooseRender.color = new Color(100, 100, 100);
+    private void playerGooseHeadSound(string gooseName) {
+        switch (gooseName) {
+            case "QuickGoose":
+                AudioManager.Instance.Play("quickHead");
+                break;
+            case "MageGoose":
+                AudioManager.Instance.Play("mageShoot");
+                break;
+            case "BigGoose":
+                AudioManager.Instance.Play("bigHead");
+                break;
+            default:
+                Debug.Log("Play Head Sound No Name: Check");
+                break;
+        }
     }
+
     
 }
 

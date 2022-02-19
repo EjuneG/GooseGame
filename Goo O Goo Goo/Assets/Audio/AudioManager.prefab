@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2359096790505371100
+--- !u!1 &4865032082696765243
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2359096790505371098}
-  - component: {fileID: 2359096790505371099}
+  - component: {fileID: 4865032082696765245}
+  - component: {fileID: 4865032082696765244}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2359096790505371098
+--- !u!4 &4865032082696765245
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2359096790505371100}
+  m_GameObject: {fileID: 4865032082696765243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2359096790505371099
+--- !u!114 &4865032082696765244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2359096790505371100}
+  m_GameObject: {fileID: 4865032082696765243}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dff3e9d84443d5449bc376c7dc214c9, type: 3}
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: bgm
-    clip: {fileID: 8300000, guid: 8ea825c4a6cf84742beaeddd589e1f42, type: 3}
-    volume: 0.6
+    clip: {fileID: 8300000, guid: 8ba19cdf11e02714493b4cf927caad16, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -82,12 +82,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: bigHead
     clip: {fileID: 8300000, guid: be12cd1745caabf41bb26e69d8a4bb31, type: 3}
-    volume: 1
+    volume: 0.85
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: mageGet
-    clip: {fileID: 8300000, guid: 991d1092d27c7de42a1d492c87451b43, type: 3}
+    clip: {fileID: 8300000, guid: 9dff08eeaa6fddb45a49cbd717171ed3, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -101,6 +101,24 @@ MonoBehaviour:
   - name: bigWin
     clip: {fileID: 8300000, guid: 67529153e86a5d44a986e389d93b98c2, type: 3}
     volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: startBGM
+    clip: {fileID: 8300000, guid: 8ba19cdf11e02714493b4cf927caad16, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: lossBGM
+    clip: {fileID: 8300000, guid: 0af60689f9a08aa49a193e8a6aa18c53, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: menuClick
+    clip: {fileID: 8300000, guid: 8fc444de3882d0d4681c67a4461e32a7, type: 3}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}

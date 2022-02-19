@@ -32,7 +32,7 @@ public class Obstacle : MonoBehaviour
             if (HP <= 0) {
                 int scoreToAdd = Score * eggColliding.getMultiplier();
                 GameDisplay.Instance.addPoint(scoreToAdd, goose);
-
+                AudioManager.Instance.Play("getWater"); //add point sound
                 // add bonus award object at the obstacle coordinates
                 // random bonus award will be triggered by chance at a predefined probability
                 Vector2 position = this.gameObject.transform.position;

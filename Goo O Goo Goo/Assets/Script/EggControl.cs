@@ -14,8 +14,14 @@ public class EggControl : MonoBehaviour
         get { return currentSpeed;}
         set { currentSpeed = value;}
     }
+
+    private bool beingHeld;
+    public bool BeingHeld {
+        get { return beingHeld; }
+        set { beingHeld = value; }
+    }
+
     private float speedToLaunch;
-    [SerializeField] Animator mageGooseAnimator;
 
     public int bounceCount;
     public float quickGooseIncrease = 0.25f;
@@ -28,7 +34,7 @@ public class EggControl : MonoBehaviour
     public string lastTouchedBy; //shows which goose last touched it
     private int pointMultiplier;
 
-    public float edgeChange = 0.2f; 
+    public float edgeChange = 0.2f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -145,7 +151,6 @@ public class EggControl : MonoBehaviour
         AudioManager.Instance.Play("mageShoot");
         bounceCount = 0;
         Vector2 desiredDirection = new Vector2(0, 1);
-        //PlayerControl.Instance.mageGooseAnimator.Play("shoot");
         rgb.velocity = desiredDirection.normalized * speedToLaunch; //shoot out
         stopShoot();
     }
@@ -216,9 +221,11 @@ public class EggControl : MonoBehaviour
     private void updateRotation() {
         // get the angle from current velocity
         // adjust angle: rotate by 90 degrees so that 0 degree points upwards
-        float angle = Mathf.Atan2(rgb.velocity.y, rgb.velocity.x) * Mathf.Rad2Deg - 90;
-        //Debug.Log("angle" + angle);
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (!beingHeld) {
+            float angle = Mathf.Atan2(rgb.velocity.y, rgb.velocity.x) * Mathf.Rad2Deg - 90;
+            //Debug.Log("angle" + angle);
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     public void setMultiplier(int inputPointMultiplier)

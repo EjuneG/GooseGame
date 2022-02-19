@@ -11,7 +11,6 @@ public class GameDisplay : MonoBehaviour
     public List<GameObject> eggList = new List<GameObject>(); //a list to store eggs' gameObject for us to increase their speed
     public bool gameOver;
     [SerializeField] public int points = 0;
-
     //score addition UI
     public Text addScoreText;
     public Text ScoreText;
