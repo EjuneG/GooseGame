@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Egg
+  - Obstacle
+  - EggAward
+  - X2Award
+  - GoldAward
   layers:
   - Default
   - TransparentFX
@@ -12,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - AboveUIObjects
+  - UIOverObjects
   - 
   - 
   - 

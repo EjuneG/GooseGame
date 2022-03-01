@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4299583023574754104}
   - component: {fileID: -6613642261227997389}
   - component: {fileID: 3642716419104368303}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: X2Award
   m_TagString: X2Award
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 1a562d95d2636464db8dac3752f1d55b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

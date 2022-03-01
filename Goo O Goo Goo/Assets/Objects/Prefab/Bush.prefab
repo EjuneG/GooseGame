@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4067091463014785039}
   - component: {fileID: -6709564330270174581}
   - component: {fileID: 5564119874143307197}
-  m_Layer: 0
+  - component: {fileID: 2364423685677274632}
+  m_Layer: 6
   m_Name: Bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,3 +116,22 @@ CircleCollider2D:
   m_Offset: {x: 0.3746357, y: -0.046828747}
   serializedVersion: 2
   m_Radius: 5.2702284
+--- !u!95 &2364423685677274632
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997285873284847453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f30ebd1dcd21d448a7131774798877d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

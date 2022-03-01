@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1377905005162148163}
   - component: {fileID: 1042615683804185499}
   - component: {fileID: -3841298483871849547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EggAward
   m_TagString: EggAward
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 1a562d95d2636464db8dac3752f1d55b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

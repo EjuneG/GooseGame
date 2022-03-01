@@ -15,6 +15,10 @@ public class Progression : MonoBehaviour
     [SerializeField]private float gameboardX;
     [SerializeField]private float gameboardY;
 
+    private GameObject rock;
+    private GameObject house;
+    private GameObject truck;
+    private GameObject bush;
     // hard-coded constant values
     public const float goldDistance = 1f;
     public const float goldBottomBorderY = 0f;
@@ -23,6 +27,13 @@ public class Progression : MonoBehaviour
     void Awake() {
         Instance = this;
         difficultyLevel = 0; //max = 5
+
+        if(obstacles[0] != null) {
+            rock = obstacles[0];
+            house = obstacles[1];
+            truck = obstacles[2];
+            bush = obstacles[3];
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -43,64 +54,55 @@ public class Progression : MonoBehaviour
 
         while (y <= gameboardY) {
             Instantiate(coin, new Vector3(x, y), Quaternion.identity);
-            y += goldDistance;
+            y += goldDistance - 0.5f;
         }
     }
     void Spawn() {
         if(dropTime % 17 == 0) {
             SpawnCol();
-        }else if(dropTime % 5 == 0) {
+        }else if(dropTime % 3 == 0) {
             Instantiate(coin, new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(goldBottomBorderY, gameboardY)), Quaternion.identity);
         }
         switch (difficultyLevel) {
             case 0:
-                if(dropTime % 25 == 0) {
-                    SpawnObject(obstacles[3]);
+                if(dropTime % 20 == 0) {
+                    SpawnObject(bush);
                 }
-                if(dropTime % 15 == 0) {
-                    SpawnObject(obstacles[2]);
-                }else if(dropTime % 10 == 0) {
-                    SpawnObject(obstacles[1]);
-                } else if(dropTime % 5 == 0) {
-                    SpawnObject(obstacles[0]);
+                if(dropTime % 10 == 0) {
+                    SpawnObject(rock);
                 }
                 break;
             case 1:
-                if (dropTime % 25 == 0) {
-                    SpawnObject(obstacles[3]);
+                if (dropTime % 20 == 0) {
+                    SpawnObject(bush);
                 }
-                if (dropTime % 12 == 0) {
-                    SpawnObject(obstacles[2]);
-                } else if (dropTime % 8 == 0) {
-                    SpawnObject(obstacles[1]);
-                } else if (dropTime % 4 == 0) {
-                    SpawnObject(obstacles[0]);
+                if (dropTime % 14 == 0) {
+                    SpawnObject(house);
+                } else if (dropTime % 7 == 0) {
+                    SpawnObject(rock);
                 }
                 break;
             case 2:
                 if (dropTime % 15 == 0) {
-                    SpawnObject(obstacles[3]);
+                    SpawnObject(bush);
                 }
-                if (dropTime % 8 == 0) {
-                    SpawnObject(obstacles[2]);
-                } else if (dropTime % 6 == 0) {
-                    SpawnObject(obstacles[1]);
-                } else if (dropTime % 4 == 0) {
-                    SpawnObject(obstacles[0]);
-                    SpawnObject(obstacles[0]);
+                if (dropTime % 21 == 0) {
+                    SpawnObject(truck);
+                } else if (dropTime % 14 == 0) {
+                    SpawnObject(house);
+                } else if (dropTime % 7 == 0) {
+                    SpawnObject(rock);
                 }
                 break;
             case 3:
                 if (dropTime % 15 == 0) {
-                    SpawnObject(obstacles[3]);
+                    SpawnObject(bush);
                 }
-                if (dropTime % 8 == 0) {
-                    SpawnObject(obstacles[2]);
-                } else if (dropTime % 6 == 0) {
+                if (dropTime % 14 == 0) {
+                    SpawnObject(truck);
+                } else if (dropTime % 7 == 0) {
                     SpawnObject(obstacles[1]);
-                    SpawnObject(obstacles[1]);
-                } else if (dropTime % 4 == 0) {
-                    SpawnObject(obstacles[0]);
+                } else if (dropTime % 5 == 0) {
                     SpawnObject(obstacles[0]);
                 }
                 break;
@@ -225,13 +227,13 @@ public class Progression : MonoBehaviour
     }
 
     private void updateDifficulty(float time) {
-        if (time > 480) {
+        if (time > 240) {
             difficultyLevel = 4;
-        } else if (time > 240) {
-            difficultyLevel = 3;
         } else if (time > 120) {
-            difficultyLevel = 2;
+            difficultyLevel = 3;
         } else if (time > 60) {
+            difficultyLevel = 2;
+        } else if (time > 30) {
             difficultyLevel = 1;
         }
     }

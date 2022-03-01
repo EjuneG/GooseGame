@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Bush : Obstacle
 {
-    [SerializeField]private float speedReduction = 0.5f;
+    [SerializeField]private float speedReduction = 1f;
+    private Animator bushAnim;
     protected override void Awake() {
-        //do nothing for now since there is no animator for Bush yet
+        bushAnim = GetComponent<Animator>();
     }
 
     protected override void OnCollisionEnter2D(Collision2D eggCollider) {
@@ -25,6 +26,7 @@ public class Bush : Obstacle
             if(egg.CurrentSpeed - 0.5 >= egg.speedBottomThreshold) {
                 StartCoroutine(slowDownEgg(egg));
             }
+            bushAnim.Play("shake");
         }
             //play disappear anim, do nothing
             
@@ -41,8 +43,8 @@ public class Bush : Obstacle
         float initialSpeed = egg.CurrentSpeed;
         while (speedToReduce > 0){
             Debug.Log("Doing work");
-            egg.CurrentSpeed -= 0.1f;
-            speedToReduce -= 0.1f;
+            egg.CurrentSpeed -= 0.2f;
+            speedToReduce -= 0.2f;
             yield return new WaitForSeconds(0.05f);
             if (speedToReduce < 0) {
                 float afterSpeed = egg.CurrentSpeed;

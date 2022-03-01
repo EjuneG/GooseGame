@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8792823883963954710}
   - component: {fileID: 8792823883963954711}
   - component: {fileID: 8792823883963954708}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Egg
   m_TagString: Egg
   m_Icon: {fileID: 0}
@@ -137,7 +137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OneLevelSpeedChange: 0.5
   currentSpeed: 0
-  mageGooseAnimator: {fileID: 1390258030279864302, guid: eab519387b8864d488dce22a6716b7a8, type: 3}
   bounceCount: 0
   quickGooseIncrease: 0.25
   bigGooseDecrease: -0.25
@@ -211,6 +210,10 @@ PrefabInstance:
     - target: {fileID: 8645736256539529037, guid: 4893c5a07bb032143a922b9b93ae7dc6, type: 3}
       propertyPath: m_Name
       value: Plane
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645736256539529037, guid: 4893c5a07bb032143a922b9b93ae7dc6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4893c5a07bb032143a922b9b93ae7dc6, type: 3}
