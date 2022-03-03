@@ -38,7 +38,8 @@ public class Obstacle : MonoBehaviour
                 Vector2 position = this.gameObject.transform.position;
                 Progression.Instance.SpawnBonusAward(position);
 
-                StartCoroutine(killObstacle());
+                //StartCoroutine(killObstacle());
+                Destroy(this.gameObject);
             }
         }
     }
@@ -53,8 +54,8 @@ public class Obstacle : MonoBehaviour
         return children;
     }
 
-    IEnumerator killObstacle() {
-        yield return new WaitForSeconds(0.1f);
-        Destroy(this.gameObject);
-    }
+    //IEnumerator killObstacle() {
+    //    yield return new WaitForSeconds(0.1f);
+    //    Destroy(this.gameObject);
+    //}
 }

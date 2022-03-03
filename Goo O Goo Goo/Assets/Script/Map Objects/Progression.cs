@@ -22,7 +22,7 @@ public class Progression : MonoBehaviour
     // hard-coded constant values
     public const float goldDistance = 1f;
     public const float goldBottomBorderY = 0f;
-    public const float bonusProbability = 0.1f;
+    public const float bonusProbability = 0.2f;
 
     void Awake() {
         Instance = this;
@@ -147,7 +147,8 @@ public class Progression : MonoBehaviour
         //Debug.Log(bonusRandomChance < bonusProbability);
         if (bonusRandomChance < bonusProbability)
         {
-            int bonusIndex = Random.Range(0, bonus.Length - 1);
+            int bonusIndex = Random.Range(0, bonus.Length);
+            //Debug.Log("total bonus" + bonus.Length);
             //Debug.Log("Spawn bonus award index: " + bonusIndex);
             Instantiate(bonus[bonusIndex], position, Quaternion.identity);
         }
@@ -156,7 +157,7 @@ public class Progression : MonoBehaviour
     // spawn bonus award, gold spread all over screen
     public void SpawnGoldAward()
     {
-        Debug.Log("progression: spawning gold");
+        //Debug.Log("progression: spawning gold");
         // loop over gameboard x,y, spawn gold over goldDistance
         float x = -gameboardX;
         float y = gameboardY;

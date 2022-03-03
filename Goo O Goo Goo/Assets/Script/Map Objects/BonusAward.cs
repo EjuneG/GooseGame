@@ -5,22 +5,29 @@ using UnityEngine;
 public class BonusAward : MonoBehaviour
 {
     Animator animator;
+    bool isTrigger;
 
     private float bonusX2Time = 10;
+    private float animationTime = 0.8f;
     [SerializeField] private float gameboardX;
     [SerializeField] private float gameboardY;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        isTrigger = false;
     }
 
     private void OnTriggerEnter2D(Collider2D eggCollider)
     {
         // avoid interaction with hidden bonus award
-        if (eggCollider.gameObject.tag.Equals("Egg") && !gameObject.transform.localScale.Equals(new Vector3(0, 0, 0)))
+        //if (eggCollider.gameObject.tag.Equals("Egg") && !gameObject.transform.localScale.Equals(new Vector3(0, 0, 0)))
+        if (eggCollider.gameObject.tag.Equals("Egg") && !isTrigger)
         {
             //Debug.Log(eggCollider.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+
+            animator.Play("onHit");
+            isTrigger = true;
 
             // trigger bonus award by bonus type (saved as tag)
             string bonusType = gameObject.tag;
@@ -39,11 +46,6 @@ public class BonusAward : MonoBehaviour
                     Debug.Log("Unexpected bonus award triggered.");
                     break;
             }
-
-            animator.Play("onHit");
-            // should not detroy current gameobject yet, script is needed for wait inumerator
-            Destroy(gameObject.GetComponent<Rigidbody>()); // disable rigidbody
-            gameObject.transform.localScale = new Vector3(0, 0, 0); // hide
         }
     }
 
@@ -110,8 +112,12 @@ public class BonusAward : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    IEnumerator killObstacle() {
-        yield return new WaitForSeconds(0.8f);
+    IEnumerator killObstacle()
+    {
+        yield return new WaitForSeconds(animationTime);
+        //// should not detroy current gameobject yet, script is needed for wait inumerator
+        //Destroy(gameObject.GetComponent<Rigidbody>()); // disable rigidbody
+        //gameObject.transform.localScale = new Vector3(0, 0, 0); // hide
         Destroy(this.gameObject);
     }
 }
