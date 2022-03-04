@@ -29,7 +29,6 @@ public class EggControl : MonoBehaviour
     public float speedBottomThreshold = 3.5f;
     Animator eggAnimator;
     public Animator addAnimator;
-    bool touched = false;
     float lastTouchTime = 0f;
     public string lastTouchedBy; //shows which goose last touched it
     private int pointMultiplier;

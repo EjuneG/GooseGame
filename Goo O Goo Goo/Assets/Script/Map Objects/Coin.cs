@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    float size = 1f;
     int value = 1;
     float lifeTime = 5f;
     public Animator animator;

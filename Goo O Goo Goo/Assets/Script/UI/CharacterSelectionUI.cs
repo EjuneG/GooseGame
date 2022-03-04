@@ -10,7 +10,6 @@ public class CharacterSelectionUI : MonoBehaviour
     int player2ArrowPlace;
     bool player1Selected;
     bool player2Selected;
-    bool gooseLocked = false;
     string player1Goose;
     string player2Goose;
     [SerializeField] private Transform[] ArrowPosition;
