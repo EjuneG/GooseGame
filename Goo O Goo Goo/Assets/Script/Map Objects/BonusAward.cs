@@ -27,6 +27,7 @@ public class BonusAward : MonoBehaviour
             //Debug.Log(eggCollider.gameObject.name + " : " + gameObject.name + " : " + Time.time);
 
             animator.Play("onHit");
+            AudioManager.Instance.Play("bonusCollect");
             isTrigger = true;
 
             // trigger bonus award by bonus type (saved as tag)

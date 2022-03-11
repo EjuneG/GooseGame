@@ -12,39 +12,60 @@ public class Obstacle : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D eggCollider) {
-        if (eggCollider.gameObject.tag.Equals("Egg")) {
+    protected virtual void OnCollisionEnter2D(Collision2D eggCollider)
+    {
+        if (eggCollider.gameObject.tag.Equals("Egg"))
+        {
             EggControl eggColliding = eggCollider.gameObject.GetComponent<EggControl>();
             string goose = eggCollider.gameObject.gameObject.GetComponent<EggControl>().lastTouchedBy;
-            animator.Play("onHit");
-            if(goose.Equals("BigGoose")) {
-                //send message to UI display
-                HP -= 2;
-            }else if (goose.Equals("QuickGoose")) {
-                HP -= 1;
-                //send message to UI display
-            } else {
-                HP -= 1;
-                //send message to UI -- Mage Goose
-            }
-            //animator.SetFloat("HP", this.HP); no animaton for now
-            AudioManager.Instance.Play("breakHouse");
-            if (HP <= 0) {
-                int scoreToAdd = Score * eggColliding.getMultiplier();
-                GameDisplay.Instance.addPoint(scoreToAdd, goose);
-                AudioManager.Instance.Play("getWater"); //add point sound
-                // add bonus award object at the obstacle coordinates
-                // random bonus award will be triggered by chance at a predefined probability
-                Vector2 position = this.gameObject.transform.position;
-                Progression.Instance.SpawnBonusAward(position);
 
-                //StartCoroutine(killObstacle());
-                Destroy(this.gameObject);
+            if (goose.Equals("BigGoose"))
+            {
+                //if last touched by big goose, obstacle is destroyed at once
+                HP = 0;
             }
+            else if (goose.Equals("QuickGoose") || goose.Equals("MageGoose") )
+            {
+                HP -= 1;
+                //send message to UI display
+            }
+            destroyOrBounce(eggColliding, goose);
         }
     }
 
-    public List<GameObject> GetChildren()
+    // check obstacle's HP -> destroy or bounce
+    private void destroyOrBounce(EggControl eggColliding, string goose)
+    {
+        // destroy and pass through obstacle
+        if (HP <= 0)
+        {
+            int scoreToAdd = Score * eggColliding.getMultiplier();
+            GameDisplay.Instance.addPoint(scoreToAdd, goose);
+            //TODO: update this animation
+            animator.Play("onHit");
+            AudioManager.Instance.Play("bigDestroy");
+                                                    
+            // when destroyed, egg will continue follow the same direction and "pass" through the obstacle
+            eggColliding.setVelocity(eggColliding.lastVelocity);
+
+            // add bonus award object at the obstacle coordinates
+            // random bonus award will be triggered by chance at a predefined probability
+            Vector2 position = this.gameObject.transform.position;
+            Progression.Instance.SpawnBonusAward(position);
+
+            //StartCoroutine(killObstacle());
+            Destroy(this.gameObject);
+        }
+        // hit and bounce
+        else
+        {
+            animator.Play("onHit");
+            AudioManager.Instance.Play("breakHouse");
+        }
+    }
+
+        //used in BonusAward
+        public List<GameObject> GetChildren()
     {
         List<GameObject> children = new List<GameObject>();
         foreach (Transform tran in this.gameObject.transform)

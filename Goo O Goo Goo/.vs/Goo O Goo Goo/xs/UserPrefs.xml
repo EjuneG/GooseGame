@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{55F7962B-0612-CB2E-8BDD-9866F2994740}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Game Managers/GameDisplay.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/Map Objects/Progression.cs">
     <Files>
-      <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="118" Column="77" />
+      <File FileName="Assets/Script/Map Objects/Obstacle.cs" Line="51" Column="65" IsPinned="True" />
       <File FileName="Assets/Script/Game Managers/bottomLineTouched.cs" Line="1" Column="1" />
-      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="150" Column="60" />
-      <File FileName="Assets/Script/EggControl.cs" Line="20" Column="9" />
-      <File FileName="Assets/Script/Map Objects/Obstacle.cs" Line="45" Column="6" />
-      <File FileName="Assets/Script/Game Managers/GameDisplay.cs" Line="58" Column="44" />
+      <File FileName="Assets/Script/Map Objects/Progression.cs" Line="25" Column="47" />
+      <File FileName="Assets/Script/EggControl.cs" Line="143" Column="10" />
+      <File FileName="Assets/Script/Map Objects/BonusAward.cs" Line="30" Column="13" />
+      <File FileName="Assets/Script/Game Managers/GameDisplay.cs" Line="34" Column="17" />
+      <File FileName="Assets/Script/Game Managers/AudioManager.cs" Line="26" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,10 +16,10 @@
             <Node name="Assets" expanded="True">
               <Node name="Script" expanded="True">
                 <Node name="Characters" expanded="True" />
-                <Node name="Game Managers" expanded="True">
-                  <Node name="GameDisplay.cs" selected="True" />
+                <Node name="Game Managers" expanded="True" />
+                <Node name="Map Objects" expanded="True">
+                  <Node name="Progression.cs" selected="True" />
                 </Node>
-                <Node name="Map Objects" expanded="True" />
               </Node>
             </Node>
           </Node>

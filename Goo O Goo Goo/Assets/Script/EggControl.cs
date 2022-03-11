@@ -31,6 +31,7 @@ public class EggControl : MonoBehaviour
     public Animator addAnimator;
     float lastTouchTime = 0f;
     public string lastTouchedBy; //shows which goose last touched it
+    public Vector2 lastVelocity;
     private int pointMultiplier;
 
     public float edgeChange = 0.2f;
@@ -88,7 +89,8 @@ public class EggControl : MonoBehaviour
             lastTouchedBy = "BigGoose";
             AudioManager.Instance.Play("bigHead");
             AudioManager.Instance.Play("getWater2");
-            StartCoroutine(increasePoint(20));
+            // unused code, big goose no longer gets point increase
+            //StartCoroutine(increasePoint(20));
         //    addAnimator.Play("appear");
         //    PlayerControl.Instance.bigGooseAnimator.Play("head");
         } else {
@@ -99,6 +101,7 @@ public class EggControl : MonoBehaviour
 
     //egg tilting mechanism when it goes straight
     private void OnCollisionExit2D(Collision2D collision) {
+        lastVelocity = rgb.velocity;
         //if (PlayerControl.Instance.quickHead) {
         //    PlayerControl.Instance.quickHead = false;
         //}
@@ -236,26 +239,33 @@ public class EggControl : MonoBehaviour
         return pointMultiplier;
     }
 
+    public void setVelocity(Vector2 velocity)
+    {
+        rgb.velocity = velocity;
+    }
+
 
     IEnumerator stopShoot() {
         yield return new WaitForSeconds(1f);
 
         //PlayerControl.Instance.mageShoot = false;
     }
-    IEnumerator increasePoint(int point) {
-        int pointToAdd = point;
-        while (pointToAdd > 0) {
-            GameDisplay.Instance.points += 1;
-            pointToAdd--;
-            if (pointToAdd == point / 2 && point > 5) {
-                AudioManager.Instance.Play("bigWin");
-            }
-            yield return new WaitForSeconds(0.03f);
-            if (pointToAdd < 0) {
-                StopAllCoroutines();
-            }
-        }
-    }
+
+    //// unused code, big goose no longer gets point increase
+    //IEnumerator increasePoint(int point) {
+    //    int pointToAdd = point;
+    //    while (pointToAdd > 0) {
+    //        GameDisplay.Instance.points += 1;
+    //        pointToAdd--;
+    //        if (pointToAdd == point / 2 && point > 5) {
+    //            AudioManager.Instance.Play("bigWin");
+    //        }
+    //        yield return new WaitForSeconds(0.03f);
+    //        if (pointToAdd < 0) {
+    //            StopAllCoroutines();
+    //        }
+    //    }
+    //}
 
     
 }

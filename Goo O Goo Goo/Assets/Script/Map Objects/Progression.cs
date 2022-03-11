@@ -151,6 +151,7 @@ public class Progression : MonoBehaviour
             //Debug.Log("total bonus" + bonus.Length);
             //Debug.Log("Spawn bonus award index: " + bonusIndex);
             Instantiate(bonus[bonusIndex], position, Quaternion.identity);
+            AudioManager.Instance.Play("bonusSpawn");
         }
     }
 
