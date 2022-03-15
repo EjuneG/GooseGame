@@ -47,6 +47,7 @@ public class Obstacle : MonoBehaviour
                                                     
             // when destroyed, egg will continue follow the same direction and "pass" through the obstacle
             eggColliding.setVelocity(eggColliding.lastVelocity);
+            //Debug.Log(eggColliding.lastVelocity + "bounce"+ eggColliding.GetComponent<Rigidbody2D>().velocity);
 
             // add bonus award object at the obstacle coordinates
             // random bonus award will be triggered by chance at a predefined probability
@@ -64,8 +65,8 @@ public class Obstacle : MonoBehaviour
         }
     }
 
-        //used in BonusAward
-        public List<GameObject> GetChildren()
+    //used in BonusAward
+    public List<GameObject> GetChildren()
     {
         List<GameObject> children = new List<GameObject>();
         foreach (Transform tran in this.gameObject.transform)

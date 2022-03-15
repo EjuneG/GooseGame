@@ -20,8 +20,9 @@ public class Progression : MonoBehaviour
     private GameObject truck;
     private GameObject bush;
     // hard-coded constant values
-    public const float goldDistance = 1f;
-    public const float goldBottomBorderY = 0f;
+    public const float goldDistance = 0.7f;
+    public const float nonObstacleBottomBorderY = 0f;
+    public const float obstacleBottomBorderY = 1f;
     public const float bonusProbability = 0.2f;
 
     void Awake() {
@@ -50,18 +51,18 @@ public class Progression : MonoBehaviour
 
     void SpawnCol() {
         float x = Random.Range(-gameboardX, gameboardX);
-        float y = goldBottomBorderY;
+        float y = nonObstacleBottomBorderY;
 
         while (y <= gameboardY) {
             Instantiate(coin, new Vector3(x, y), Quaternion.identity);
-            y += goldDistance - 0.5f;
+            y += goldDistance;
         }
     }
     void Spawn() {
         if(dropTime % 17 == 0) {
             SpawnCol();
         }else if(dropTime % 3 == 0) {
-            Instantiate(coin, new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(goldBottomBorderY, gameboardY)), Quaternion.identity);
+            Instantiate(coin, new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(nonObstacleBottomBorderY, gameboardY)), Quaternion.identity);
         }
         switch (difficultyLevel) {
             case 0:
@@ -117,11 +118,18 @@ public class Progression : MonoBehaviour
     void SpawnObject(GameObject objectToSpawn) {
         Vector3 rendererSize = objectToSpawn.GetComponent<SpriteRenderer>().bounds.extents;
         int tryAttempts = 10;
+        Vector2 positionToSpawn;
         //Debug.Log("Spawn Object Called");
         //try to spawn this 10 times if finds conflict
         while (tryAttempts > 0) {
-            //Debug.Log("While Loop Entered");
-            Vector2 positionToSpawn = new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(goldBottomBorderY, gameboardY));
+            if (objectToSpawn.Equals(bush))
+            {
+                positionToSpawn = new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(nonObstacleBottomBorderY, gameboardY));
+            }
+            else
+            {
+                positionToSpawn = new Vector2(Random.Range(-gameboardX, gameboardX), Random.Range(obstacleBottomBorderY, gameboardY));
+            }
             Collider2D hitCollider = Physics2D.OverlapBox(positionToSpawn, rendererSize, 0);
             if (!hitCollider) {
                 Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity);
@@ -164,7 +172,7 @@ public class Progression : MonoBehaviour
         float y = gameboardY;
         while (x <= gameboardX)
         {
-            while (y >= goldBottomBorderY)
+            while (y >= nonObstacleBottomBorderY)
             {
                 Instantiate(coin, new Vector2(x, y), Quaternion.identity);
                 y -= goldDistance;

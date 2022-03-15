@@ -73,6 +73,11 @@ public class EggControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         bounceCount += 1;
+        if (!collision.gameObject.tag.Equals("Obstacle"))
+        {
+            lastVelocity = rgb.velocity; // save velocity before collision
+        }
+
         //check where the collision comes from, react differently for each goose
         if (collision.gameObject.name.Equals("QuickGoose")) {
             currentSpeed = rgb.velocity.magnitude + 0.25f;
@@ -101,7 +106,7 @@ public class EggControl : MonoBehaviour
 
     //egg tilting mechanism when it goes straight
     private void OnCollisionExit2D(Collision2D collision) {
-        lastVelocity = rgb.velocity;
+        //lastVelocity = rgb.velocity; // save velocity before collision
         //if (PlayerControl.Instance.quickHead) {
         //    PlayerControl.Instance.quickHead = false;
         //}
@@ -141,6 +146,7 @@ public class EggControl : MonoBehaviour
             }
             rgb.velocity = new Vector2(newX, newY).normalized * currentSpeed;
         }
+        //Debug.Log("last"+lastVelocity + "new" + rgb.velocity);
     }
 
     public void eggStop() {
@@ -152,8 +158,10 @@ public class EggControl : MonoBehaviour
     public void eggLaunch() {
         AudioManager.Instance.Play("mageShoot");
         bounceCount = 0;
-        Vector2 desiredDirection = new Vector2(0, 1);
+        // mage shoot at random angle between -45 to 45 degree
+        Vector2 desiredDirection = new Vector2(Random.Range(-0.5f, 0.5f), 1);
         rgb.velocity = desiredDirection.normalized * speedToLaunch; //shoot out
+        lastVelocity = rgb.velocity;
         stopShoot();
     }
     void initializeEgg(float speed, float launchSpeed, Vector2 direction) {
