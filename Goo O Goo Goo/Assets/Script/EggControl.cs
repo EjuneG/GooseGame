@@ -33,8 +33,8 @@ public class EggControl : MonoBehaviour
     public string lastTouchedBy; //shows which goose last touched it
     public Vector2 lastVelocity;
     private int pointMultiplier;
+    public float edgeChangeVariance = 0.4f;
 
-    public float edgeChange = 0.2f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -104,12 +104,15 @@ public class EggControl : MonoBehaviour
     }
 
 
-    //egg tilting mechanism when it goes straight
+    // egg tilting mechanism when it goes straight
+    // tilt to a random angle upon collision
     private void OnCollisionExit2D(Collision2D collision) {
         //lastVelocity = rgb.velocity; // save velocity before collision
         //if (PlayerControl.Instance.quickHead) {
         //    PlayerControl.Instance.quickHead = false;
         //}
+
+        float edgeChange = Random.Range(-edgeChangeVariance, edgeChangeVariance);
         if (Mathf.Abs(rgb.velocity.normalized.x) > 0.95) {
             float oldX = rgb.velocity.normalized.x;
             float oldY = rgb.velocity.normalized.y;
@@ -158,10 +161,11 @@ public class EggControl : MonoBehaviour
     public void eggLaunch() {
         AudioManager.Instance.Play("mageShoot");
         bounceCount = 0;
-        // mage shoot at random angle between -45 to 45 degree
-        Vector2 desiredDirection = new Vector2(Random.Range(-0.5f, 0.5f), 1);
+        Vector2 desiredDirection = new Vector2(0, 1);
+        //// mage shoot at random angle between -45 to 45 degree
+        //Vector2 desiredDirection = new Vector2(Random.Range(-0.5f, 0.5f), 1);
         rgb.velocity = desiredDirection.normalized * speedToLaunch; //shoot out
-        lastVelocity = rgb.velocity;
+        //lastVelocity = rgb.velocity;
         stopShoot();
     }
     void initializeEgg(float speed, float launchSpeed, Vector2 direction) {
