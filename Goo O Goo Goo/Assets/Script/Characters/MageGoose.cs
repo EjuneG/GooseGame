@@ -63,6 +63,7 @@ public class MageGoose : Goose
             timeHeld = holdingTime;
             EggBeingHeld.eggStop();
             EggBeingHeld.lastTouchedBy = "MageGoose";
+            collision.GetComponent<EggControl>().PointStreakAdder = 0; //reset streak
         }
     }
 

@@ -369,6 +369,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8792823883963954708, guid: aedc3c8814fa1e142a76fabd8b2e3922, type: 3}
+      propertyPath: speedBottomThreshold
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8792823883963954710, guid: aedc3c8814fa1e142a76fabd8b2e3922, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -787,7 +791,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418023718500483677, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_Size.y
-      value: 3.4138615
+      value: 2.0307214
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418023718500483677, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5418023718500483677, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_Offset.x
@@ -795,7 +803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418023718500483677, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_Offset.y
-      value: 3.091919
+      value: 3.9580276
       objectReference: {fileID: 0}
     - target: {fileID: 5418023718500483677, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_Direction
@@ -1531,6 +1539,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!68 &1693756448
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693756446}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.86916703, y: 4.6282673}
+  - {x: 0.012050014, y: 4.9479117}
+  - {x: 0.9544162, y: 4.596246}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1756222560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,19 +1992,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528026905905231170, guid: eab519387b8864d488dce22a6716b7a8, type: 3}
       propertyPath: m_Size.x
-      value: 1.9358698
+      value: 1.7414031
       objectReference: {fileID: 0}
     - target: {fileID: 8528026905905231170, guid: eab519387b8864d488dce22a6716b7a8, type: 3}
       propertyPath: m_Size.y
-      value: 2.6471648
+      value: 3.514768
       objectReference: {fileID: 0}
     - target: {fileID: 8528026905905231170, guid: eab519387b8864d488dce22a6716b7a8, type: 3}
       propertyPath: m_Offset.x
-      value: 0.07255612
+      value: 0.03411094
       objectReference: {fileID: 0}
     - target: {fileID: 8528026905905231170, guid: eab519387b8864d488dce22a6716b7a8, type: 3}
       propertyPath: m_Offset.y
-      value: 2.3618116
+      value: 3.0111663
       objectReference: {fileID: 0}
     - target: {fileID: 8528026905905231170, guid: eab519387b8864d488dce22a6716b7a8, type: 3}
       propertyPath: m_Direction

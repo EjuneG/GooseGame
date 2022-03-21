@@ -5,8 +5,9 @@ using UnityEngine;
 public class EggControl : MonoBehaviour
 {
     Rigidbody2D rgb;
-    public const float defaultSpeed = 2f;
-    [SerializeField]private float OneLevelSpeedChange = 0.5f;
+    Collider2D collider;
+    public const float defaultSpeed = 3.5f;
+    [SerializeField]private float OneLevelSpeedChange = 0.1f;
     Vector2 direction;
     Vector2 normalSpeed;
     [SerializeField]private float currentSpeed;
@@ -29,7 +30,19 @@ public class EggControl : MonoBehaviour
     public float speedBottomThreshold = 3.5f;
     Animator eggAnimator;
     public Animator addAnimator;
-    float lastTouchTime = 0f;
+    private float lastTouchTime = 0f;
+    public float LastTouchedTime {
+        get { return lastTouchTime; }
+        set { lastTouchTime = value; }
+    }
+
+    private int pointStreakAdder = 0;
+    public int PointStreakAdder {
+        get { return pointStreakAdder; }
+        set { pointStreakAdder = value; }
+    }
+
+
     public string lastTouchedBy; //shows which goose last touched it
     public Vector2 lastVelocity;
     private int pointMultiplier;
@@ -41,6 +54,7 @@ public class EggControl : MonoBehaviour
         rgb = GetComponent<Rigidbody2D>();
         rgb.AddForce(new Vector2(0, -2));
         eggAnimator = GetComponent<Animator>();
+        collider = GetComponent<Collider2D>();
     }
 
     private void Start() {
@@ -55,51 +69,60 @@ public class EggControl : MonoBehaviour
         normalSpeed = rgb.velocity.normalized;
         //Debug.Log("normalX: " + normalSpeed.x);
         //Debug.Log("normalY: " + normalSpeed.y);
-        lastTouchTime -= Time.fixedDeltaTime;
+        lastTouchTime += Time.fixedDeltaTime;
 
-        //refresh speed if too low
-        if(currentSpeed < speedBottomThreshold) {
-            currentSpeed = speedBottomThreshold;
-            rgb.velocity = rgb.velocity.normalized * currentSpeed;
-        }
-        updateBottomSpeed(Progression.Instance.difficultyLevel);
+
+        updateSpeed();
         updatePointMultiplier();
         //Debug.Log("Point Multi: " + pointMultiplier);
         updateSpeedVFX();
 
         // update rotation based on current velocity, egg points towards its current direction
         updateRotation();
+        Debug.Log("CurrentSpeed:" + currentSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
         bounceCount += 1;
-        if (!collision.gameObject.tag.Equals("Obstacle"))
-        {
+        if (!collision.gameObject.tag.Equals("Obstacle")) {
             lastVelocity = rgb.velocity; // save velocity before collision
         }
 
         //check where the collision comes from, react differently for each goose
-        if (collision.gameObject.name.Equals("QuickGoose")) {
-            currentSpeed = rgb.velocity.magnitude + 0.25f;
+        if (collision.gameObject.name.Equals("QuickGoose") && lastTouchTime > 0.5f) {
+            currentSpeed = rgb.velocity.magnitude + 0.1f;
             rgb.velocity = rgb.velocity.normalized * currentSpeed;
             //PlayerControl.Instance.quickGooseAnimator.Play("head");
             lastTouchedBy = "QuickGoose";
             AudioManager.Instance.Play("quickHead");
-        }else if (collision.gameObject.name.Equals("BigGoose")){
+        } else if (collision.gameObject.name.Equals("BigGoose") && lastTouchTime > 0.5f) {
             currentSpeed = rgb.velocity.magnitude;
-            if(currentSpeed > speedBottomThreshold) {
-                currentSpeed = rgb.velocity.magnitude - 0.25f;
+            if (currentSpeed > speedBottomThreshold) {
+                currentSpeed = rgb.velocity.magnitude - 0.1f;
                 rgb.velocity = rgb.velocity.normalized * currentSpeed;
             }
             lastTouchedBy = "BigGoose";
             AudioManager.Instance.Play("bigHead");
-            AudioManager.Instance.Play("getWater2");
+            //AudioManager.Instance.Play("getWater2");
             // unused code, big goose no longer gets point increase
             //StartCoroutine(increasePoint(20));
-        //    addAnimator.Play("appear");
-        //    PlayerControl.Instance.bigGooseAnimator.Play("head");
+            //    addAnimator.Play("appear");
+            //    PlayerControl.Instance.bigGooseAnimator.Play("head");
         } else {
             currentSpeed = rgb.velocity.magnitude; //updating currentSpeed
+        }
+
+        if (collision.gameObject.name == "BigGoose" || collision.gameObject.name == "QuickGoose" || collision.gameObject.name == "MageGoose") {
+            //touched by goose --> check if going down
+            if (rgb.velocity.normalized.y < 0) {
+                //if going down, we want it to go up ^ ^
+                float oldX = rgb.velocity.normalized.x;
+                float oldY = rgb.velocity.normalized.y;
+                float newY;
+                newY = Mathf.Abs(oldY);
+
+                rgb.velocity = new Vector2(oldX, newY).normalized * currentSpeed;
+            }
         }
     }
 
@@ -107,47 +130,52 @@ public class EggControl : MonoBehaviour
     // egg tilting mechanism when it goes straight
     // tilt to a random angle upon collision
     private void OnCollisionExit2D(Collision2D collision) {
-        //lastVelocity = rgb.velocity; // save velocity before collision
-        //if (PlayerControl.Instance.quickHead) {
-        //    PlayerControl.Instance.quickHead = false;
-        //}
 
-        float edgeChange = Random.Range(-edgeChangeVariance, edgeChangeVariance);
-        if (Mathf.Abs(rgb.velocity.normalized.x) > 0.95) {
-            float oldX = rgb.velocity.normalized.x;
-            float oldY = rgb.velocity.normalized.y;
-            float newX;
-            float newY;
-            if(oldX < 0) {
-                newX = oldX + edgeChange;
-            } else {
-                newX = oldX - edgeChange;
-            }
+        if (collision.gameObject.name == "BigGoose" || collision.gameObject.name == "QuickGoose" || collision.gameObject.name == "MageGoose") {
+            resetStreak();
+        } else {
+            float edgeChange = Random.Range(-edgeChangeVariance, edgeChangeVariance);
+            if (Mathf.Abs(rgb.velocity.normalized.x) > 0.95) {
+                float oldX = rgb.velocity.normalized.x;
+                float oldY = rgb.velocity.normalized.y;
+                float newX;
+                float newY;
+                if (oldX < 0) {
+                    newX = oldX + edgeChange;
+                } else {
+                    newX = oldX - edgeChange;
+                }
 
-            if(oldY < 0) {
-                newY = oldY -edgeChange;
-            } else {
-                newY = oldY + edgeChange;
-            }
+                if (oldY < 0) {
+                    newY = oldY - edgeChange;
+                } else {
+                    newY = oldY + edgeChange;
+                }
 
-            rgb.velocity = new Vector2(newX, newY).normalized * currentSpeed;
-        }else if(Mathf.Abs(rgb.velocity.normalized.y) > 0.95) {
-            float oldX = rgb.velocity.normalized.x;
-            float oldY = rgb.velocity.normalized.y;
-            float newX;
-            float newY;
-            if (oldX > 0) {
-                newX = oldX + edgeChange;
-            } else {
-                newX = oldX - edgeChange;
-            }
+                rgb.velocity = new Vector2(newX, newY).normalized * currentSpeed;
+            } else if (Mathf.Abs(rgb.velocity.normalized.y) > 0.95) {
+                float oldX = rgb.velocity.normalized.x;
+                float oldY = rgb.velocity.normalized.y;
+                float newX;
+                float newY;
+                if (oldX > 0) {
+                    newX = oldX + edgeChange;
+                } else {
+                    newX = oldX - edgeChange;
+                }
 
-            if (oldY > 0) {
-                newY = oldY - edgeChange;
-            } else {
-                newY = oldY + edgeChange;
+                if (oldY > 0) {
+                    newY = oldY - edgeChange;
+                } else {
+                    newY = oldY + edgeChange;
+                }
+                rgb.velocity = new Vector2(newX, newY).normalized * currentSpeed;
             }
-            rgb.velocity = new Vector2(newX, newY).normalized * currentSpeed;
+        }
+        
+
+        if(collision.gameObject.name == "BigGoose" || collision.gameObject.name == "QuickGoose" ||collision.gameObject.name == "MageGoose") {
+            lastTouchTime = 0;
         }
         //Debug.Log("last"+lastVelocity + "new" + rgb.velocity);
     }
@@ -186,19 +214,28 @@ public class EggControl : MonoBehaviour
         }
     }
 
+    private void resetStreak() {
+        pointStreakAdder = 0;
+    }
+
     private void updatePointMultiplier() {
-        double pointMultiple = currentSpeed / speedBottomThreshold;
-        if(pointMultiple < 1.4) {
+        double speedMultiply = currentSpeed / speedBottomThreshold;
+        if(speedMultiply < 1.5f) {
             pointMultiplier = 1;
-        }else if(pointMultiple < 1.7) {
+        }else if(speedMultiply < 2.0f) {
             pointMultiplier = 2;
-        }else if(pointMultiple < 2.0) {
+        }else{
             pointMultiplier = 4;
-        } else {
-            pointMultiplier = 8;
         }
     }
 
+    private void updateSpeed() {
+        rgb.velocity = rgb.velocity.normalized * currentSpeed;
+        updateBottomSpeed(Progression.Instance.difficultyLevel);
+        if (currentSpeed < speedBottomThreshold) {
+            currentSpeed = speedBottomThreshold;
+        }
+    }
     private void updateSpeedVFX() {
         GameObject speedVFX = transform.GetChild(0).gameObject;
         if (pointMultiplier >= 2) {
@@ -212,19 +249,21 @@ public class EggControl : MonoBehaviour
         }
     }
 
+
+
     private void updateBottomSpeed(int difficulty) {
         switch (difficulty) {
             case 1:
-                speedBottomThreshold = 3.5f * 1.1f;
+                speedBottomThreshold = 3.9f;
                 break;
             case 2:
-                speedBottomThreshold = 3.5f * 1.25f;
+                speedBottomThreshold = 4.5f;
                 break;
             case 3:
-                speedBottomThreshold = 3.5f * 1.5f;
+                speedBottomThreshold = 5.3f;
                 break;
             case 4:
-                speedBottomThreshold = 3.5f * 2f;
+                speedBottomThreshold = 6.5f;
                 break;
             default:
                 break;

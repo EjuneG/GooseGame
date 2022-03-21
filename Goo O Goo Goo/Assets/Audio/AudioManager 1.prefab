@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4865032082696765243
+--- !u!1 &2098751918684857021
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4865032082696765245}
-  - component: {fileID: 4865032082696765244}
+  - component: {fileID: 2098751918684857019}
+  - component: {fileID: 2098751918684857018}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: AudioManager 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4865032082696765245
+--- !u!4 &2098751918684857019
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865032082696765243}
+  m_GameObject: {fileID: 2098751918684857021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4865032082696765244
+--- !u!114 &2098751918684857018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865032082696765243}
+  m_GameObject: {fileID: 2098751918684857021}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dff3e9d84443d5449bc376c7dc214c9, type: 3}
@@ -121,4 +121,52 @@ MonoBehaviour:
     volume: 0.6
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: bush
+    clip: {fileID: 8300000, guid: b6c392c21065dbf4db2703095bfe435a, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: bigDestroy
+    clip: {fileID: 8300000, guid: 724c7bcbcfd054a8e81a358f13713dd8, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: bonusSpawn
+    clip: {fileID: 8300000, guid: e12116a711f38434084e279ac9547094, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: bonusCollect
+    clip: {fileID: 8300000, guid: 46add980ecba3467a8a15210f9e89335, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: bgm95%
+    clip: {fileID: 8300000, guid: eb69c5700a82a494e908664529ee13d5, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: bgm87.5%
+    clip: {fileID: 8300000, guid: 22e52ae4cff424849853d05e433afff8, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: bgm77.5%
+    clip: {fileID: 8300000, guid: 1f796228215f75a42aa165707e231e75, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: bgm65%
+    clip: {fileID: 8300000, guid: 7038d9dbc82760348b590bd33a1b50b7, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
     source: {fileID: 0}

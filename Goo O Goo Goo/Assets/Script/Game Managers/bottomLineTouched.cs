@@ -15,7 +15,7 @@ public class bottomLineTouched : MonoBehaviour
         // game over if no egg left
         if (GameDisplay.Instance.eggCount <= 0) {
             AudioManager.Instance.Play("breakFox");
-            AudioManager.Instance.StopPlay("bgm");
+            AudioManager.Instance.StopBGM();
             AudioManager.Instance.Play("lossBGM");
             GameDisplay.Instance.gameOver = true;
         }

@@ -47,6 +47,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopBGM() {
+        Sound[] bgms = Array.FindAll(sounds, sound => (sound.name.Contains("bgm") || sound.name.Contains("BGM")));
+        
+        foreach (Sound bgm in bgms) {
+            if (bgm.source.isPlaying) {
+                bgm.source.Stop();
+            }
+        }
+    }
+
     public bool isPlaying(string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) {

@@ -237,14 +237,30 @@ public class Progression : MonoBehaviour
     }
 
     private void updateDifficulty(float time) {
-        if (time > 240) {
+        if (time > 227) {
             difficultyLevel = 4;
-        } else if (time > 120) {
+            if (AudioManager.Instance.isPlaying("bgm77.5%")) {
+                AudioManager.Instance.StopPlay("bgm77.5%");
+                AudioManager.Instance.Play("bgm65%");
+            }
+        } else if (time > 140) {
             difficultyLevel = 3;
-        } else if (time > 60) {
+            if (AudioManager.Instance.isPlaying("bgm87.5%")) {
+                AudioManager.Instance.StopPlay("bgm87.5%");
+                AudioManager.Instance.Play("bgm77.5%");
+            }
+        } else if (time > 74) {
             difficultyLevel = 2;
-        } else if (time > 30) {
+            if (AudioManager.Instance.isPlaying("bgm95%")) {
+                AudioManager.Instance.StopPlay("bgm95%");
+                AudioManager.Instance.Play("bgm87.5%");
+            }
+        } else if (time > 38) {
             difficultyLevel = 1;
+            if (AudioManager.Instance.isPlaying("bgm")) {
+                AudioManager.Instance.StopPlay("bgm");
+                AudioManager.Instance.Play("bgm95%");
+            }
         }
     }
 }

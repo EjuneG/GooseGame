@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc07df1b39006b41ad4bcb8c0119183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 2
-  Score: 1
+  HP: 3
+  Score: 5
 --- !u!60 &751655245478145126
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -71,8 +71,7 @@ public class pausePop : MonoBehaviour
     }
 
     public void LoadMenu() {
-        AudioManager.Instance.StopPlay("lossBGM");
-        AudioManager.Instance.StopPlay("bgm");
+        AudioManager.Instance.StopBGM();
         GameDisplay.Instance.gameOver = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("OpeningScene");
@@ -86,8 +85,7 @@ public class pausePop : MonoBehaviour
         GameDisplay.Instance.gameOver = false;
         Time.timeScale = 1f;
         GameIsPaused = false;
-        AudioManager.Instance.StopPlay("lossBGM");
-        AudioManager.Instance.StopPlay("bgm");
+        AudioManager.Instance.StopBGM();
         AudioManager.Instance.Play("bgm");
         SceneManager.LoadScene("GameScene");
     }
