@@ -102,10 +102,12 @@ public class EggControl : MonoBehaviour
                 rgb.velocity = rgb.velocity.normalized * currentSpeed;
             }
             lastTouchedBy = "BigGoose";
-            AudioManager.Instance.Play("bigHead");
-            //AudioManager.Instance.Play("getWater2");
+            AudioManager.Instance.Play("getWater2");
             // unused code, big goose no longer gets point increase
-            //StartCoroutine(increasePoint(20));
+            //3/21 trying to decrease to 10, b/c other gooses gain points pretty easily now
+            AudioManager.Instance.Play("bigHead");
+            //AudioManager.Instance.Play("bigWin");
+            GameDisplay.Instance.addPoint(10, "BigGoose");
             //    addAnimator.Play("appear");
             //    PlayerControl.Instance.bigGooseAnimator.Play("head");
         } else {
@@ -219,10 +221,9 @@ public class EggControl : MonoBehaviour
     }
 
     private void updatePointMultiplier() {
-        double speedMultiply = currentSpeed / speedBottomThreshold;
-        if(speedMultiply < 1.5f) {
+        if(currentSpeed < 4.49f) {
             pointMultiplier = 1;
-        }else if(speedMultiply < 2.0f) {
+        }else if(currentSpeed < 6.49f) {
             pointMultiplier = 2;
         }else{
             pointMultiplier = 4;
@@ -302,7 +303,7 @@ public class EggControl : MonoBehaviour
         //PlayerControl.Instance.mageShoot = false;
     }
 
-    //// unused code, big goose no longer gets point increase
+    // unused code, big goose no longer gets point increase
     //IEnumerator increasePoint(int point) {
     //    int pointToAdd = point;
     //    while (pointToAdd > 0) {
@@ -318,5 +319,5 @@ public class EggControl : MonoBehaviour
     //    }
     //}
 
-    
+
 }

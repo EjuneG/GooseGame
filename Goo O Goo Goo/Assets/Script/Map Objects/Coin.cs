@@ -29,8 +29,10 @@ public class Coin : MonoBehaviour
             string touchedGoose = collision.GetComponent<EggControl>().lastTouchedBy; //!!Mage Goose needs set up!!
             EggControl eggColliding = collision.gameObject.GetComponent<EggControl>();
             int eggStreak = collision.GetComponent<EggControl>().PointStreakAdder;
-            int pointToAdd = (value + eggStreak) * eggColliding.getMultiplier();
-            collision.GetComponent<EggControl>().PointStreakAdder++; //add 1 to streak
+            int pointToAdd = value * eggColliding.getMultiplier() + eggStreak;
+            if (eggStreak < 5) {
+                collision.GetComponent<EggControl>().PointStreakAdder++; //add 1 to streak
+            }
             GameDisplay.Instance.addPoint(pointToAdd, touchedGoose);
             AudioManager.Instance.Play("getWater");
             Destroy(this.gameObject);

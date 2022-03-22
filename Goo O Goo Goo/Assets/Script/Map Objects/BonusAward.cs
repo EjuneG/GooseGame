@@ -102,11 +102,13 @@ public class BonusAward : MonoBehaviour
         //set multiplier to doubled
         GameDisplay.Instance.setX2Multiplier(doubledMultiplier);
         //Debug.Log("Doubled multiplier: " + GameDisplay.Instance.x2Multiplier);
-
+        //trigger anim event
+        GameEvents.current.X2TimeStart();
         yield return new WaitForSeconds(bonusX2Time);
         //Debug.Log("doubled: " + GameDisplay.Instance.x2Multiplier + "reset: " + GameDisplay.Instance.x2Multiplier / 2);
         int resetMultiplier = GameDisplay.Instance.x2Multiplier / 2;
         GameDisplay.Instance.setX2Multiplier(resetMultiplier);
+        GameEvents.current.X2TimeEnds();
         //Debug.Log("Finished at timestamp : " + Time.time);
         //Debug.Log("After multiplier: " + GameDisplay.Instance.x2Multiplier);
 
