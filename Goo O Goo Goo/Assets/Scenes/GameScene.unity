@@ -819,7 +819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540421210300388250, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.22
+      value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: 5540421210300388250, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -867,7 +867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540421210300388252, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5540421210300388253, guid: 99355fcadf89df941a97adc93d71067a, type: 3}
       propertyPath: m_Sprite
@@ -2057,6 +2057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x2Indicator: {fileID: 1776542123}
   x2Timer: {fileID: 2056704530}
+  x2Counter: 0
 --- !u!1001 &1957693143
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,7 +58,7 @@ public class Goose : MonoBehaviour
     }
 
     protected bool notOnLeftEdge(Transform transform) {
-        return transform.position.x > -4.3f;
+        return transform.position.x > -4.5f;
     }
 
     protected void flipLeft(Transform transform) {

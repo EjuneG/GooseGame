@@ -24,8 +24,7 @@ public class Obstacle : MonoBehaviour
                 //if last touched by big goose, obstacle is destroyed at once
                 HP = 0;
                 bigGooseDestroy(eggColliding, goose);
-            }
-            else if (goose.Equals("QuickGoose") || goose.Equals("MageGoose") )
+            }else //could be last touched by null if just spawned
             {
                 HP -= 1;
                 destroyOrBounce(eggColliding, goose);

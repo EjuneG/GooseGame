@@ -107,6 +107,18 @@ public class Progression : MonoBehaviour
                     SpawnObject(obstacles[0]);
                 }
                 break;
+            case 4:
+                if (dropTime % 15 == 0) {
+                    SpawnObject(bush);
+                }
+                if (dropTime % 14 == 0) {
+                    SpawnObject(truck);
+                } else if (dropTime % 7 == 0) {
+                    SpawnObject(obstacles[1]);
+                } else if (dropTime % 3 == 0) {
+                    SpawnObject(obstacles[0]);
+                }
+                break;
             default:
                 Debug.Log("Progression Difficulty not working, contact Chris");
                 break;

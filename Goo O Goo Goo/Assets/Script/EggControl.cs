@@ -89,13 +89,13 @@ public class EggControl : MonoBehaviour
         }
 
         //check where the collision comes from, react differently for each goose
-        if (collision.gameObject.name.Equals("QuickGoose") && lastTouchTime > 0.5f) {
+        if (collision.gameObject.name.Equals("QuickGoose") && lastTouchTime > 0.1f) {
             currentSpeed = rgb.velocity.magnitude + 0.1f;
             rgb.velocity = rgb.velocity.normalized * currentSpeed;
             //PlayerControl.Instance.quickGooseAnimator.Play("head");
             lastTouchedBy = "QuickGoose";
             AudioManager.Instance.Play("quickHead");
-        } else if (collision.gameObject.name.Equals("BigGoose") && lastTouchTime > 0.5f) {
+        } else if (collision.gameObject.name.Equals("BigGoose") && lastTouchTime > 0.1f) {
             currentSpeed = rgb.velocity.magnitude;
             if (currentSpeed > speedBottomThreshold) {
                 currentSpeed = rgb.velocity.magnitude - 0.1f;
