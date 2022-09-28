@@ -131,7 +131,6 @@ public class Progression : MonoBehaviour
         Vector3 rendererSize = objectToSpawn.GetComponent<SpriteRenderer>().bounds.extents;
         int tryAttempts = 10;
         Vector2 positionToSpawn;
-        //Debug.Log("Spawn Object Called");
         //try to spawn this 10 times if finds conflict
         while (tryAttempts > 0) {
             if (objectToSpawn.Equals(bush))
@@ -163,13 +162,9 @@ public class Progression : MonoBehaviour
         // the probability bonus award is only triggered
         // if bonusRandomChance falls into [0, 0.1) range
         float bonusRandomChance = Random.Range(0f, 1f);
-        //Debug.Log("bonusRandomChance" + bonusRandomChance);
-        //Debug.Log(bonusRandomChance < bonusProbability);
         if (bonusRandomChance < bonusProbability)
         {
             int bonusIndex = Random.Range(0, bonus.Length);
-            //Debug.Log("total bonus" + bonus.Length);
-            //Debug.Log("Spawn bonus award index: " + bonusIndex);
             Instantiate(bonus[bonusIndex], position, Quaternion.identity);
             AudioManager.Instance.Play("bonusSpawn");
         }
@@ -178,7 +173,6 @@ public class Progression : MonoBehaviour
     // spawn bonus award, gold spread all over screen
     public void SpawnGoldAward()
     {
-        //Debug.Log("progression: spawning gold");
         // loop over gameboard x,y, spawn gold over goldDistance
         float x = -gameboardX;
         float y = gameboardY;
@@ -202,9 +196,7 @@ public class Progression : MonoBehaviour
         {
             // find and destroy all objects with tag "Obstacle"
             if (gameObjects[i].tag.Equals("Obstacle"))
-            //if (gameObjects[i].name.Contains("Rock") || gameObjects[i].name.Contains("Fox") || gameObjects[i].name.Contains("Truck"))
             {
-                //Debug.Log(gameObjects[i] + "  : " + i + " (OBSTACLE)");
                 Destroy(gameObjects[i]);
             }
         }

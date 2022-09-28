@@ -21,10 +21,8 @@ public class BonusAward : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D eggCollider)
     {
         // avoid interaction with hidden bonus award
-        //if (eggCollider.gameObject.tag.Equals("Egg") && !gameObject.transform.localScale.Equals(new Vector3(0, 0, 0)))
         if (eggCollider.gameObject.tag.Equals("Egg") && !isTrigger)
         {
-            //Debug.Log(eggCollider.gameObject.name + " : " + gameObject.name + " : " + Time.time);
 
             animator.Play("onHit");
             AudioManager.Instance.Play("bonusCollect");
@@ -44,7 +42,6 @@ public class BonusAward : MonoBehaviour
                     GenerateX2Award();
                     break;
                 default:
-                    Debug.Log("Unexpected bonus award triggered.");
                     break;
             }
         }
@@ -53,7 +50,6 @@ public class BonusAward : MonoBehaviour
     // eggaward -> extra egg
     private void GenerateEggAward(Collider2D eggCollider)
     {
-        //Debug.Log("generating egg award");
 
         Vector2 position = eggCollider.transform.position;
         Progression.Instance.SpawnEggAward(position);
@@ -93,24 +89,17 @@ public class BonusAward : MonoBehaviour
     */
     IEnumerator GenerateX2AwardWaiter()
     {
-        //Debug.Log("generating x2 award");
         int doubledMultiplier = GameDisplay.Instance.x2Multiplier * 2;
 
-        //Debug.Log("Started at timestamp : " + Time.time);
-        //Debug.Log("Before multiplier: " + GameDisplay.Instance.x2Multiplier);
 
         //set multiplier to doubled
         GameDisplay.Instance.setX2Multiplier(doubledMultiplier);
-        //Debug.Log("Doubled multiplier: " + GameDisplay.Instance.x2Multiplier);
         //trigger anim event
         GameEvents.current.X2TimeStart();
         yield return new WaitForSeconds(bonusX2Time);
-        //Debug.Log("doubled: " + GameDisplay.Instance.x2Multiplier + "reset: " + GameDisplay.Instance.x2Multiplier / 2);
         int resetMultiplier = GameDisplay.Instance.x2Multiplier / 2;
         GameDisplay.Instance.setX2Multiplier(resetMultiplier);
         GameEvents.current.X2TimeEnds();
-        //Debug.Log("Finished at timestamp : " + Time.time);
-        //Debug.Log("After multiplier: " + GameDisplay.Instance.x2Multiplier);
 
         Destroy(this.gameObject);
     }
@@ -119,8 +108,6 @@ public class BonusAward : MonoBehaviour
     {
         yield return new WaitForSeconds(animationTime);
         //// should not detroy current gameobject yet, script is needed for wait inumerator
-        //Destroy(gameObject.GetComponent<Rigidbody>()); // disable rigidbody
-        //gameObject.transform.localScale = new Vector3(0, 0, 0); // hide
         Destroy(this.gameObject);
     }
 }

@@ -14,6 +14,7 @@ public class GameDisplay : MonoBehaviour
     //score addition UI
     public Text addScoreText;
     public Text ScoreText;
+    public Explosion explosion;
 
     //animator
     protected Animator addScoreAnim;
@@ -48,7 +49,6 @@ public class GameDisplay : MonoBehaviour
                 addScoreTextColor = Color.white;
                 break;
             default:
-                Debug.Log("Egg Hit Bonus But No Goose Found");
                 break;
         }
         Text newAddScoreText = Instantiate(addScoreText);
@@ -61,7 +61,6 @@ public class GameDisplay : MonoBehaviour
 
     }
     IEnumerator playAddAnimation(int pointToAdd, Color textColor) {
-        Debug.Log("This worked");
         Text newAddScoreText = Instantiate(addScoreText);
         newAddScoreText.text = "" + pointToAdd;
         newAddScoreText.color = textColor;
@@ -69,6 +68,10 @@ public class GameDisplay : MonoBehaviour
         addAnimator.Play("ScoreAdd");
         yield return new WaitForSeconds(0.5f);
         //Destroy(newAddScoreText.gameObject);
+    }
+
+    public void playExplosion(Vector2 position, float size) {
+
     }
 
     public void setX2Multiplier(int inputX2Multiplier)

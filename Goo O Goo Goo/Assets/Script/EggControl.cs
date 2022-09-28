@@ -65,21 +65,16 @@ public class EggControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log("Egg Speed:" + rgb.velocity.magnitude);
         normalSpeed = rgb.velocity.normalized;
-        //Debug.Log("normalX: " + normalSpeed.x);
-        //Debug.Log("normalY: " + normalSpeed.y);
         lastTouchTime += Time.fixedDeltaTime;
 
 
         updateSpeed();
         updatePointMultiplier();
-        //Debug.Log("Point Multi: " + pointMultiplier);
         updateSpeedVFX();
 
         // update rotation based on current velocity, egg points towards its current direction
         updateRotation();
-        Debug.Log("CurrentSpeed:" + currentSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -179,7 +174,6 @@ public class EggControl : MonoBehaviour
         if(collision.gameObject.name == "BigGoose" || collision.gameObject.name == "QuickGoose" ||collision.gameObject.name == "MageGoose") {
             lastTouchTime = 0;
         }
-        //Debug.Log("last"+lastVelocity + "new" + rgb.velocity);
     }
 
     public void eggStop() {
@@ -277,7 +271,6 @@ public class EggControl : MonoBehaviour
         // adjust angle: rotate by 90 degrees so that 0 degree points upwards
         if (!beingHeld) {
             float angle = Mathf.Atan2(rgb.velocity.y, rgb.velocity.x) * Mathf.Rad2Deg - 90;
-            //Debug.Log("angle" + angle);
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
